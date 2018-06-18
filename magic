@@ -37,13 +37,23 @@ def perform_magic(args):
             cast_spell(spellcast)
 
 
+def load_config():
+    try:
+        config = yaml.load(open(os.path.expanduser('~') + '/.config/magic/config.yml', 'r'))
+        environment_variables = config['environment_variables']
+        for variable in environment_variables:
+            os.environ[variable] = str(environment_variables[variable])
+    except yaml.YAMLError as error:
+        print(f'{colors.FAIL}💥  Failed to open config file:{colors.RESET}')
+        print(error)
+        exit()
+
 def open_spellbook():
     try:
-        
         spellbook = yaml.load(open(os.path.expanduser('~') + '/.config/magic/spellbook.yml', 'r'))
         return spellbook
     except yaml.YAMLError as error:
-        print(f'{colors.FAIL}💥  Failed to open your spellbook:{colors.RESET}')
+        print(f'{colors.FAIL}💥  Failed to open spellbook file:{colors.RESET}')
         print(error)
         exit()
 
@@ -60,8 +70,7 @@ def examine_spellbook():
                     raise ValueError(
                         'Unexpected type of spell. Check the documentation for correct formatting.')
                 elif not (
-                    'title' in spell and
-                    'description' in spell and
+                    'message' in spell and
                     'magic_words' in spell and
                     'conjurations' in spell
                 ):
@@ -96,7 +105,7 @@ Example: magic -start server1 -deploy app
             if (index > 0):
                 magic_word_list += ','
             magic_word_list += '  -' + magic_word
-        print('{0:<28}  {1:<50}'.format(magic_word_list, spell['title']))
+        print('{0:<28}  {1:<50}'.format(magic_word_list, spell['message']))
 
 
 def find_spell(magic_word):
@@ -109,7 +118,14 @@ def find_spell(magic_word):
 
 def cast_spell(spellcast):
     spell = find_spell(spellcast[0])
-    print(spell['description'])
+
+    message = spell['message']
+    for index, _ in enumerate(spellcast):
+        if (index > 0):
+            message = message.replace(
+                '$' + str(index), spellcast[index])
+    print(message)
+
     for raw_conjuration in spell['conjurations']:
         conjuration = raw_conjuration
         for index, _ in enumerate(spellcast):
@@ -122,6 +138,7 @@ def cast_spell(spellcast):
 def main(args):
     global spellbook
     spellbook = open_spellbook()
+    load_config()
     examine_spellbook()
     perform_magic(args)
 
