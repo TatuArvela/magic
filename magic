@@ -39,7 +39,8 @@ def perform_magic(args):
 
 def open_spellbook():
     try:
-        spellbook = yaml.load(open('spellbook.yml', 'r'))
+        
+        spellbook = yaml.load(open(os.path.expanduser('~') + '/.config/magic/spellbook.yml', 'r'))
         return spellbook
     except yaml.YAMLError as error:
         print(f'{colors.FAIL}💥  Failed to open your spellbook:{colors.RESET}')
