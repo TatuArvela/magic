@@ -1,0 +1,122 @@
+#!/usr/bin/python3
+
+import getopt
+import os
+import sys
+import yaml
+import locale
+
+
+version = "2.0.0"
+spellbook = {}
+
+
+class colors:
+    RESET = '\033[0m'
+    EMPHASIS = '\033[94m'
+    COMPLETED = '\033[92m'
+    FAIL = '\033[91m'
+
+
+def perform_magic(args):
+    spellcast = []
+    if not args:
+        show_information()
+    for index, arg in enumerate(args):
+        # TODO: Add an escape symbol for passing options (- or --) to conjurations
+        if arg[0][0] == '-':
+            # Previous spell is defined, cast it
+            if (index > 0):
+                cast_spell(spellcast)
+            spellcast = [arg[1:]]
+        else:
+            spellcast.append(arg)
+
+        # All spells are defined, cast last spell
+        if (index == len(args)-1):
+            cast_spell(spellcast)
+
+
+def open_spellbook():
+    try:
+        spellbook = yaml.load(open('spellbook.yml', 'r'))
+        return spellbook
+    except yaml.YAMLError as error:
+        print(f'{colors.FAIL}💥  Failed to open your spellbook:{colors.RESET}')
+        print(error)
+        exit()
+
+
+def examine_spellbook():
+    try:
+        if not spellbook:
+            raise ValueError(
+                'Your spellbook is empty. Check the documentation for correct formatting.')
+        elif isinstance(spellbook, list):
+            for spell in spellbook:
+                if not isinstance(spell, dict):
+                    raise ValueError(
+                        'Unexpected type of spell. Check the documentation for correct formatting.')
+                elif not (
+                    'title' in spell and
+                    'description' in spell and
+                    'magic_words' in spell and
+                    'conjurations' in spell
+                ):
+                    raise ValueError(
+                        'Unexpected contents in spellbook. Check the documentation for correct formatting.')
+        else:
+            raise ValueError(
+                'Unexpected type of spellbook. Check the documentation for correct formatting.')
+
+    except Exception as error:
+        print(f'{colors.FAIL}💥  Found an error in your spellbook:{colors.RESET}', error)
+        exit()
+
+
+def show_information():
+    print('''Magic {0}
+(C) 2018, Tatu Arvela
+
+Usage: magic -[spell] [options]
+Example: magic -start server1 -deploy app
+'''.format(version))
+    print('Spellbook:')
+    for spell in spellbook:
+        magic_word_list = ""
+        for index, magic_word in enumerate(spell['magic_words']):
+            if (index > 0):
+                magic_word_list += ','
+            magic_word_list += '  -' + magic_word
+        print('{0:<28}  {1:<50}'.format(magic_word_list, spell['title']))
+
+
+def find_spell(magic_word):
+    for spell in spellbook:
+        if magic_word in spell['magic_words']:
+            return spell
+    print(f'{colors.FAIL}💥  No spell in spellbook with magic word \'{magic_word}\'{colors.RESET}')
+    exit()
+
+
+def cast_spell(spellcast):
+    spell = find_spell(spellcast[0])
+    print(spell['description'])
+    for raw_conjuration in spell['conjurations']:
+        conjuration = raw_conjuration
+        for index, _ in enumerate(spellcast):
+            if (index > 0):
+                conjuration = conjuration.replace(
+                    '$' + str(index), spellcast[index])
+        os.system(conjuration)
+
+
+def main(args):
+    global spellbook
+    spellbook = open_spellbook()
+    examine_spellbook()
+    perform_magic(args)
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

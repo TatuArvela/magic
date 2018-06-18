@@ -1,0 +1,8 @@
+- title: Test
+  description: Running test command
+  magic_words:
+    - t
+    - test
+  conjurations:
+    - echo $1
+    - echo $2
