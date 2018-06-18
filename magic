@@ -53,6 +53,7 @@ def examine_spellbook():
             raise ValueError(
                 'Your spellbook is empty. Check the documentation for correct formatting.')
         elif isinstance(spellbook, list):
+            magic_word_list = []
             for spell in spellbook:
                 if not isinstance(spell, dict):
                     raise ValueError(
@@ -65,6 +66,12 @@ def examine_spellbook():
                 ):
                     raise ValueError(
                         'Unexpected contents in spellbook. Check the documentation for correct formatting.')
+                magic_word_list = magic_word_list + spell['magic_words']
+            if len(magic_word_list) != len(set(magic_word_list)):
+                duplicates = set([x for x in magic_word_list if magic_word_list.count(x) > 1])
+                raise ValueError(
+                    'Duplicate magic words {0}'.format(duplicates)
+                )
         else:
             raise ValueError(
                 'Unexpected type of spellbook. Check the documentation for correct formatting.')
