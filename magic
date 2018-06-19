@@ -7,7 +7,7 @@ import yaml
 import locale
 
 
-version = "2.0.0"
+version = "2.1.0"
 spellbook = {}
 
 
@@ -23,18 +23,15 @@ def perform_magic(args):
     if not args:
         show_information()
     for index, arg in enumerate(args):
-        # TODO: Add an escape symbol for passing options (- or --) to conjurations
-        if arg[0][0] == '-':
-            # Previous spell is defined, cast it
-            if (index > 0):
-                cast_spell(spellcast)
-            spellcast = [arg[1:]]
+        if arg.endswith(','):
+            spellcast.append(arg[:-1])
+            cast_spell(spellcast)
+            spellcast = []
+        elif index == len(args) - 1:
+            spellcast.append(arg)
+            cast_spell(spellcast)
         else:
             spellcast.append(arg)
-
-        # All spells are defined, cast last spell
-        if (index == len(args)-1):
-            cast_spell(spellcast)
 
 
 def load_config():
@@ -95,8 +92,8 @@ def show_information():
     print('''Magic {0}
 (C) 2018, Tatu Arvela
 
-Usage: magic -[spell] [options]
-Example: magic -start server1 -deploy app
+Usage: magic [spell1] [options], [spell2] [options]
+Example: magic start-dev-server, deploy-frontend dev
 '''.format(version))
     print('Spellbook:')
     for spell in spellbook:
@@ -104,7 +101,7 @@ Example: magic -start server1 -deploy app
         for index, magic_word in enumerate(spell['magic_words']):
             if (index > 0):
                 magic_word_list += ','
-            magic_word_list += '  -' + magic_word
+            magic_word_list += ' ' + magic_word
         print('{0:<28}  {1:<50}'.format(magic_word_list, spell['message']))
 
 
@@ -118,6 +115,11 @@ def find_spell(magic_word):
 
 def cast_spell(spellcast):
     spell = find_spell(spellcast[0])
+
+    if ('variables_expected' in spell):
+        if (len(spellcast) - 1) < spell['variables_expected']:
+            print(f'{colors.FAIL}💥  Not enough variables passed in spell {spellcast}{colors.RESET}')
+            exit()
 
     message = spell['message']
     for index, _ in enumerate(spellcast):

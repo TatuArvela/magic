@@ -7,3 +7,4 @@
     - echo $2
     - echo $TEST1
     - echo $TEST2
+  variables_expected: 2
