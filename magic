@@ -51,7 +51,7 @@ def load_config():
     except yaml.YAMLError as error:
         print(f'{colors.RED}🔥  Failed to open config file:{colors.RESET}')
         print(error)
-        exit()
+        sys.exit()
 
 
 def open_spellbook():
@@ -62,7 +62,7 @@ def open_spellbook():
     except yaml.YAMLError as error:
         print(f'{colors.RED}🔥  Failed to open spellbook file:{colors.RESET}')
         print(error)
-        exit()
+        sys.exit()
 
 
 def examine_spellbook():
@@ -96,7 +96,7 @@ def examine_spellbook():
 
     except Exception as error:
         print(f'{colors.RED}🔥  Found an error in your spellbook:{colors.RESET}', error)
-        exit()
+        sys.exit()
 
 
 def show_information():
@@ -121,7 +121,7 @@ def find_spell(magic_word):
         if magic_word in spell['magic_words']:
             return spell
     print(f'{colors.RED}🔥  No spell in spellbook with magic word \'{magic_word}\'{colors.RESET}')
-    exit()
+    sys.exit()
 
 
 def cast_spell(spellcast):
@@ -131,7 +131,7 @@ def cast_spell(spellcast):
         if (len(spellcast) - 1) < spell['variables_expected']:
             print(
                 f'{colors.RED}🔥  Not enough variables passed in spell {spellcast}{colors.RESET}')
-            exit()
+            sys.exit()
 
     message = spell['message']
     for index, _ in enumerate(spellcast):
@@ -149,7 +149,7 @@ def cast_spell(spellcast):
         return_value = os.system(conjuration)
         if (return_value > 1):
             print(f'{colors.RED}🔥  Casting \'{spellcast[0]}\' failed{colors.RESET}')
-            exit()
+            sys.exit()
 
 
 def main(args):
