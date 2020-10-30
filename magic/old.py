@@ -41,19 +41,6 @@ def perform_magic(args):
 {colors.GREEN}🕒{colors.RESET}  {datetime.now().strftime('%H:%M:%S')} | {colors.GREEN}⏱{colors.RESET}  {round((time.time() - starttime), 2)}s''')
 
 
-def load_config():
-    try:
-        config = yaml.safe_load(open(os.path.expanduser(
-            '~') + '/.config/magic/config.yml', 'r'))
-        environment_variables = config['environment_variables']
-        for variable in environment_variables:
-            os.environ[variable] = str(environment_variables[variable])
-    except yaml.YAMLError as error:
-        print(f'{colors.RED}🔥  Failed to open config file:{colors.RESET}')
-        print(error)
-        sys.exit()
-
-
 def open_spellbook():
     try:
         spellbook = yaml.safe_load(open(os.path.expanduser(
@@ -97,23 +84,6 @@ def examine_spellbook():
     except Exception as error:
         print(f'{colors.RED}🔥  Found an error in your spellbook:{colors.RESET}', error)
         sys.exit()
-
-
-def show_information():
-    print(f'''{colors.WHITE}✨  Magic {version} ✨
-(C) 2018, Tatu Arvela{colors.RESET}
-
-{colors.WHITE}Usage:{colors.RESET} magic [spell1] [options], [spell2] [options]
-{colors.WHITE}Example:{colors.RESET} magic start-dev-server, deploy-frontend dev
-''')
-    print(f'{colors.WHITE}Spellbook:{colors.RESET}')
-    for spell in spellbook:
-        magic_word_list = ""
-        for index, magic_word in enumerate(spell['magic_words']):
-            if (index > 0):
-                magic_word_list += ','
-            magic_word_list += ' ' + magic_word
-        print('{0:<28}  {1:<50}'.format(magic_word_list, spell['message']))
 
 
 def find_spell(magic_word):

@@ -17,7 +17,7 @@ I used [MartinHeinz/python-project-blueprint](https://github.com/MartinHeinz/pyt
 ## TODO
 
 * [X] Project base structure
-* [ ] Load Spellbook
+* [X] Load Spellbook
 * [ ] Validate Spellbook
 * [ ] List spells
 * [ ] Find spell from Spellbook by magic word
