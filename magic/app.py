@@ -1,3 +1,4 @@
+"✨ Magic"
 class Magic:
 
     @staticmethod

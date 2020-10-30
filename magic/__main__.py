@@ -14,8 +14,9 @@ Options:
 from docopt import docopt
 from .app import Magic
 
-version = "3"
+VERSION = "3"
 
 if __name__ == '__main__':
-    arguments = docopt(__doc__, version=f'v{version}, © 2020 Tatu Arvela')
+    arguments = docopt(__doc__, version=f'v{VERSION}, © 2020 Tatu Arvela')
+    # pylint: disable=E1121
     Magic.run(arguments)
