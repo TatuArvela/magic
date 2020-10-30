@@ -1,0 +1,16 @@
+[
+  {
+    "message": "Test spell $1 $2",
+    "magicWords": [
+      "t",
+      "test"
+    ],
+    "commands": [
+      "echo $1",
+      "echo $2",
+      "echo $TEST1",
+      "echo $TEST2"
+    ],
+    "variablesExpected": 2
+  }
+]
