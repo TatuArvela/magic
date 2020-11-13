@@ -1,4 +1,4 @@
-attrs==20.2.0
+attrs==20.3.0
 bandit==1.6.2
 docopt==0.6.2
 flake8==3.8.4
@@ -19,5 +19,5 @@ PyYAML==5.3.1
 six==1.15.0
 smmap==3.0.4
 stevedore==3.2.2
-toml==0.10.1
+toml==0.10.2
 zipp==3.4.0

@@ -2,6 +2,9 @@ MODULE := magic
 BLUE=\033[0;34m
 NC=\033[0m
 
+enable_env:
+	source ./env/bin/activate
+
 run:
 	@python -m $(MODULE)
 
