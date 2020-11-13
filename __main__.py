@@ -1,4 +1,4 @@
-"""\u2728  \u001b[34mMagic\u001b[0m \u2728\t
+"""✨  \u001b[34mMagic\u001b[0m
 
 Usage:
     magic <spell>

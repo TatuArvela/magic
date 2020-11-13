@@ -19,8 +19,8 @@ I used [MartinHeinz/python-project-blueprint](https://github.com/MartinHeinz/pyt
 * [X] Project base structure
 * [X] Load Spellbook
 * [X] Validate Spellbook
-* [ ] List (and validate) spells
-* [ ] Find spell from Spellbook by magic word
+* [X] List (and validate) spells
+* [X] Find spell from Spellbook by magic word
 * [ ] Cast spells from Spellbook
 * [ ] Register written commands into Spellbook
 
