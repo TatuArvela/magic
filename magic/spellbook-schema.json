@@ -1,0 +1,36 @@
+{
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/spell"
+  },
+  "definitions": {
+    "spell": {
+      "type": "object",
+      "required": [
+        "message",
+        "magicWords",
+        "commands"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "magicWords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "argumentsExpected": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,8 @@
-from .context import magic
+from magic import app
 
-def test_app(capsys, example_fixture):
-    # pylint: disable=W0612,W0613
-    magic.Magic.run()
+
+def test_app(capsys):
+    app.run()
     captured = capsys.readouterr()
 
     assert "Hello World..." in captured.out

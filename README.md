@@ -18,16 +18,19 @@ I used [MartinHeinz/python-project-blueprint](https://github.com/MartinHeinz/pyt
 
 * [X] Project base structure
 * [X] Load Spellbook
-* [ ] Validate Spellbook
-* [ ] List spells
+* [X] Validate Spellbook
+* [ ] List (and validate) spells
 * [ ] Find spell from Spellbook by magic word
 * [ ] Cast spells from Spellbook
 * [ ] Register written commands into Spellbook
 
 ---
 
+* [ ] Support for multiple Spellbooks
 * [ ] Working directory support
 * [ ] Compound spells from multiple spells
 * [ ] Execution time
 * [ ] Parse Makefile
 * [ ] Register Makefile commands into Spellbook
+* [ ] Testing
+* [ ] coverage.py

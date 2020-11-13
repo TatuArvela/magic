@@ -11,6 +11,6 @@
       "echo $TEST1",
       "echo $TEST2"
     ],
-    "variablesExpected": 2
+    "argumentsExpected": 2
   }
 ]

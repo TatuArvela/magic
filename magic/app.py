@@ -1,18 +1,11 @@
-"✨ Magic"
+"""✨ Magic"""
+from magic.spellbook import open_spellbook
 
-import json
+spellbook = None
 
-spellbook = {}
 
-def load_spellbook(config):
-    spellbookPath = config.get('app', 'spellbookPath')
-    with open(spellbookPath, 'r') as spellbook:
-        return json.load(spellbook)
-
-def run(arguments, config):
+def run(arguments):
     global spellbook
-    spellbook = load_spellbook(config)
-
-    print(spellbook)
+    spellbook = open_spellbook()
 
     print(arguments)
