@@ -6,7 +6,7 @@ from .utils import Colors, in_color
 
 def validate_spellbook(spellbook_contents):
     try:
-        with open('magic/spellbook-schema.json', 'r') as spellbook_schema:
+        with open('magic/spellbook.schema.json', 'r') as spellbook_schema:
             schema = json.load(spellbook_schema)
         validate(schema, spellbook_contents)
     except Exception as error:
