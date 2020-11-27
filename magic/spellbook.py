@@ -1,6 +1,7 @@
 import json
 from fastjsonschema import validate
-from magic import SPELLBOOK_PATH
+from .config import SPELLBOOK_PATH
+from .utils import Colors, in_color
 
 
 def validate_spellbook(spellbook_contents):
@@ -28,3 +29,23 @@ def open_spellbook():
     validate_spellbook(spellbook_contents)
     return list_spells(spellbook_contents)
 
+
+def show_spell(spell, spell_args):
+    spellbook = open_spellbook()
+    spell = spellbook.get(spell)
+    color = Colors.MAGENTA
+
+    print(f'{in_color("Message:", color)} {spell["message"]}')
+    print(f'{in_color("Magic words:", color)} {spell["magicWords"]}')
+    print(in_color("Commands:", color))
+    for command in spell['commands']:
+        print(f'  {command}')
+
+    arguments_expected = spell.get("argumentsExpected")
+    if arguments_expected is not None:
+        arg_color = Colors.GREEN if len(spell_args) == arguments_expected else Colors.RED
+        print(f'{in_color("Arguments expected:", color)} {in_color(arguments_expected, arg_color)}')
+
+    print(in_color("Arguments provided:", color))
+    for idx, arg in enumerate(spell_args):
+        print(f'  {idx + 1}: {arg}')

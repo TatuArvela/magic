@@ -6,7 +6,7 @@
 
 **Magic** can be used to simplify often repeated tasks such as starting servers and deploying applications.
 
-Scripts can be registered from commands or **Makefiles**, which are linked into a JSON format file called the **Spellbook** (`Spellbook.json`). Working directory is registered as well.
+*TODO* ~~Scripts can also be registered from commands or **Makefiles**, which are linked into a JSON format file called the **Spellbook** (`Spellbook.json`). Working directory is registered as well.~~
 
 Each spell is given a **message** and one or several **magic words** (identifiers) used to call it.
 
@@ -16,21 +16,9 @@ I used [MartinHeinz/python-project-blueprint](https://github.com/MartinHeinz/pyt
 
 ## TODO
 
-* [X] Project base structure
-* [X] Load Spellbook
-* [X] Validate Spellbook
-* [X] List (and validate) spells
-* [X] Find spell from Spellbook by magic word
-* [ ] Cast spells from Spellbook
 * [ ] Register written commands into Spellbook
-
----
-
+* [ ] Register Makefile commands into Spellbook
 * [ ] Support for multiple Spellbooks
 * [ ] Working directory support
-* [ ] Compound spells from multiple spells
-* [ ] Execution time
-* [ ] Parse Makefile
-* [ ] Register Makefile commands into Spellbook
 * [ ] Testing
 * [ ] coverage.py
