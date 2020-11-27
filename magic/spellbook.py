@@ -13,7 +13,7 @@ def validate_spellbook(spellbook_contents):
         raise Exception(f'Spellbook is invalid: {error}')
 
 
-def list_spells(spellbook_contents):
+def parse_spellbook(spellbook_contents):
     spells = dict()
     for entry in spellbook_contents:
         for magic_word in entry['magicWords']:
@@ -27,7 +27,13 @@ def open_spellbook():
     with open(SPELLBOOK_PATH, 'r') as spellbook_file:
         spellbook_contents = json.load(spellbook_file)
     validate_spellbook(spellbook_contents)
-    return list_spells(spellbook_contents)
+    return parse_spellbook(spellbook_contents)
+
+
+def list_spells():
+    spellbook = open_spellbook()
+    for magic_word, spell in sorted(spellbook.items()):
+        print(f'{in_color(magic_word, Colors.CYAN)}: {spell.get("message")}')
 
 
 def show_spell(spell, spell_args):

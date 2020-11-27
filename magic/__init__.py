@@ -1,20 +1,20 @@
 """✨  \u001b[34mMagic\u001b[0m
 
 Usage:
-    magic show (<spell>) [<args>...]
-    magic (<spell>) [<args>...]
-    magic -h | --help
-    magic -v | --version
+  magic show [<spell> <args>...]
+  magic <spell> [<args>...]
+  magic -h | --help
+  magic -v | --version
 
 Options:
-    -h --help       show this
-    -v --version    show version"""
+  -h --help       show this
+  -v --version    show version"""
 
 import sys
 from datetime import datetime, timedelta
 from docopt import docopt
 from .cast import cast
-from .spellbook import show_spell
+from .spellbook import show_spell, list_spells
 from .version import __version__
 from .utils import Colors, in_color
 
@@ -36,13 +36,20 @@ def main():
     start_time = datetime.now()
     arguments = docopt(__doc__, version=f'v{__version__}, © 2020 Tatu Arvela')
 
-    # Catch invalid 'show' usage
-    if arguments["<spell>"] == 'show':
+    show_arg = arguments["show"]
+    spell = arguments["<spell>"]
+    spell_args = arguments["<args>"]
+
+    # Catch invalid usage
+    if spell == 'show' or spell == 'list':
         print(__doc__)
         sys.exit()
 
-    if arguments["show"] is True:
-        show_spell(spell=arguments["<spell>"], spell_args=arguments["<args>"])
+    if show_arg is True:
+        if spell:
+            show_spell(spell=spell, spell_args=spell_args)
+        else:
+            list_spells()
         sys.exit()
 
     try:
