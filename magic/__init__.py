@@ -1,14 +1,15 @@
 """✨  \u001b[34mMagic\u001b[0m
 
 Usage:
-  magic show [<spell> <args>...]
-  magic <spell> [<args>...]
-  magic -h | --help
-  magic -v | --version
+    magic [--show] <spell> [<args>...]
+    magic -s | --show
+    magic -h | --help
+    magic -v | --version
 
 Options:
-  -h --help       show this
-  -v --version    show version"""
+    -s --show       show spell(s)
+    -h --help       show this
+    -v --version    show version"""
 
 import sys
 from datetime import datetime, timedelta
@@ -36,7 +37,7 @@ def main():
     start_time = datetime.now()
     arguments = docopt(__doc__, version=f'v{__version__}, © 2020 Tatu Arvela')
 
-    show_arg = arguments["show"]
+    show_arg = arguments["--show"]
     spell = arguments["<spell>"]
     spell_args = arguments["<args>"]
 
