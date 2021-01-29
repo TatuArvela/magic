@@ -46,11 +46,15 @@ def cast_spell(arguments):
         if spell:
             spell_args = check_args(spell.get('argumentsExpected'), spell_args)
             handle_message(spell, spell_args)
+
+            executable_commands = ''
             for command in spell['commands']:
                 parsed_command = parse_command(command, spell_args)
-                exit_code = WEXITSTATUS(system(parsed_command))
-                if exit_code != 0:
-                    raise Exception(f'Command returned exit code {exit_code}')
+                executable_commands = f"{executable_commands}\n{parsed_command}"
+
+            exit_code = WEXITSTATUS(system(executable_commands))
+            if exit_code != 0:
+                raise Exception(f'Command returned exit code {exit_code}')
             return spell.get('showSuccessMessage') is not False
 
         else:

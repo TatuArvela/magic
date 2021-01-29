@@ -23,10 +23,6 @@
 
 ### Parameters
 
-### Working directory
-
-**📝 TODO:** Persist working directory changes between commands
-
 ### Spell wizard
 
 ### Spell arguments
