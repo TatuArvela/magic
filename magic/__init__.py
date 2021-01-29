@@ -23,17 +23,6 @@ from .utils import Colors, in_color
 VERSION = __version__
 
 
-def print_result(start_time, success):
-    current_time = datetime.now().strftime('%H:%M:%S')
-    elapsed_time = datetime.now() - start_time
-    elapsed_time = elapsed_time - timedelta(microseconds=elapsed_time.microseconds)
-
-    emoji = '✅ ' if success else '❌️'
-    message = in_color('Success', Colors.GREEN) if success else in_color('Failure', Colors.RED)
-
-    print(f'{emoji} {in_color(current_time, Colors.CYAN)} {message} ⏱  {elapsed_time}')
-
-
 def main():
     start_time = datetime.now()
     arguments = docopt(__doc__, version=f'v{__version__}, © 2020 Tatu Arvela')
@@ -59,3 +48,14 @@ def main():
         print_result(start_time, success=True)
     except RuntimeError:
         print_result(start_time, success=False)
+
+
+def print_result(start_time, success):
+    current_time = datetime.now().strftime('%H:%M:%S')
+    elapsed_time = datetime.now() - start_time
+    elapsed_time = elapsed_time - timedelta(microseconds=elapsed_time.microseconds)
+
+    emoji = '✅ ' if success else '❌️'
+    message = in_color('Success', Colors.GREEN) if success else in_color('Failure', Colors.RED)
+
+    print(f'{emoji} {in_color(current_time, Colors.CYAN)} {message} ⏱  {elapsed_time}')
