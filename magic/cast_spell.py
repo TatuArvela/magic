@@ -34,7 +34,7 @@ def parse_command(command, spell_args):
     return command
 
 
-def cast(arguments):
+def cast_spell(arguments):
     try:
         spellbook = open_spellbook()
         magic_word = arguments['<spell>']

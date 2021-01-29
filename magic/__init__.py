@@ -2,20 +2,24 @@
 
 Usage:
     magic [-s | --show] <spell> [<args>...]
+    magic -a | --add
     magic -l | --list
     magic -h | --help
     magic -v | --version
 
 Options:
-    -s --show       show spell
-    -l --list       list spells
+    -s --show       show spell details
+    -a --add        add spell to spellbook
+    -l --list       list spells in spellbook
     -h --help       show this
     -v --version    show version"""
 
 import sys
 from datetime import datetime, timedelta
 from docopt import docopt
-from .cast import cast
+
+from .add_spell import add_spell
+from .cast_spell import cast_spell
 from .spellbook import show_spell, list_spells
 from .version import __version__
 from .utils import Colors, in_color
@@ -28,23 +32,29 @@ def main():
     arguments = docopt(__doc__, version=f'v{__version__}, © 2020 Tatu Arvela')
 
     show_arg = arguments["--show"]
+    add_arg = arguments["--add"]
+    list_arg = arguments["--list"]
     spell = arguments["<spell>"]
     spell_args = arguments["<args>"]
-
-    # Catch invalid usage
-    if spell == 'show' or spell == 'list':
-        print(__doc__)
-        sys.exit()
 
     if show_arg is True:
         if spell:
             show_spell(spell=spell, spell_args=spell_args)
         else:
-            list_spells()
+            # Invalid usage
+            print(__doc__)
+        sys.exit()
+
+    if add_arg is True:
+        add_spell()
+        sys.exit()
+
+    if list_arg is True:
+        list_spells()
         sys.exit()
 
     try:
-        cast(arguments)
+        cast_spell(arguments)
         print_result(start_time, success=True)
     except RuntimeError:
         print_result(start_time, success=False)
