@@ -4,7 +4,7 @@ from .config import SPELLBOOK_PATH, SPELLBOOK_SCHEMA_PATH
 from .utils import Colors, in_color
 
 
-def validate_spellbook(spellbook_contents):
+def check_spellbook(spellbook_contents):
     try:
         with open(SPELLBOOK_SCHEMA_PATH, 'r') as spellbook_schema:
             schema = json.load(spellbook_schema)
@@ -13,7 +13,7 @@ def validate_spellbook(spellbook_contents):
         raise Exception(f'Spellbook is invalid: {error}')
 
 
-def parse_spellbook(spellbook_contents):
+def read_spellbook(spellbook_contents):
     spells = dict()
     for entry in spellbook_contents:
         for magic_word in entry['magicWords']:
@@ -23,22 +23,22 @@ def parse_spellbook(spellbook_contents):
     return spells
 
 
-def open_spellbook():
+def get_spells():
     with open(SPELLBOOK_PATH, 'r') as spellbook_file:
         spellbook_contents = json.load(spellbook_file)
-    validate_spellbook(spellbook_contents)
-    return parse_spellbook(spellbook_contents)
+    check_spellbook(spellbook_contents)
+    return read_spellbook(spellbook_contents)
 
 
 def list_spells():
-    spellbook = open_spellbook()
-    for magic_word, spell in sorted(spellbook.items()):
+    spells = get_spells()
+    for magic_word, spell in sorted(spells.items()):
         print(f'{in_color(magic_word, Colors.CYAN)}: {spell.get("description")}')
 
 
 def show_spell(spell, spell_args):
-    spellbook = open_spellbook()
-    spell = spellbook.get(spell)
+    spells = get_spells()
+    spell = spells.get(spell)
     color = Colors.MAGENTA
 
     print(f'{in_color("Message:", color)} {spell["message"]}')

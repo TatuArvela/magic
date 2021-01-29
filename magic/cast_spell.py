@@ -1,6 +1,6 @@
 from os import system, WEXITSTATUS
 from magic.utils import Colors, in_color, print_error
-from magic.spellbook import open_spellbook
+from magic.spellbook import get_spells
 
 
 def check_args(arguments_expected, spell_args):
@@ -38,10 +38,10 @@ def parse_command(command, spell_args):
 
 def cast_spell(arguments):
     try:
-        spellbook = open_spellbook()
+        spells = get_spells()
         magic_word = arguments['<spell>']
         spell_args = arguments['<args>']
-        spell = spellbook.get(magic_word)
+        spell = spells.get(magic_word)
 
         if spell:
             spell_args = check_args(spell.get('argumentsExpected'), spell_args)
