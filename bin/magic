@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "$0")"
-cd ..
-source venv/bin/activate
-python3 -m magic "$@"
+# Parent directory of this file
+MAGICPATH="$(dirname "$(dirname "$0")")"
+source "${MAGICPATH}/venv/bin/activate"
+PYTHONPATH=$PYTHONPATH:$MAGICPATH python3 -m magic "$@"

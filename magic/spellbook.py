@@ -1,12 +1,12 @@
 import json
 from fastjsonschema import validate
-from .config import SPELLBOOK_PATH
+from .config import SPELLBOOK_PATH, SPELLBOOK_SCHEMA_PATH
 from .utils import Colors, in_color
 
 
 def validate_spellbook(spellbook_contents):
     try:
-        with open('magic/spellbook.schema.json', 'r') as spellbook_schema:
+        with open(SPELLBOOK_SCHEMA_PATH, 'r') as spellbook_schema:
             schema = json.load(spellbook_schema)
         validate(schema, spellbook_contents)
     except Exception as error:

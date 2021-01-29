@@ -16,9 +16,8 @@ I used [MartinHeinz/python-project-blueprint](https://github.com/MartinHeinz/pyt
 
 ## TODO
 
-* [ ] Register written commands into Spellbook
-* [ ] Register Makefile commands into Spellbook
-* [ ] Support for multiple Spellbooks
-* [ ] Working directory support
-* [ ] Testing
-* [ ] coverage.py
+* Persist working directory between commands
+* Supplying custom spellbook from environment variable
+* Spell registration wizard
+* Testing
+* coverage.py
