@@ -19,7 +19,23 @@
 
 ### Installation
 
-**📝 TODO:** Fill installation documentation
+Installation is currently manual. Follow the instructions below.
+
+Requirements: Python 3
+
+1. Clone the project somewhere and navigate to it on the command line
+2. Create a virtual env  
+        `python3 -m venv env`
+
+3. Activate the virtual environment  
+        `source env/bin/activate`
+
+4. Install the requirements  
+        `pip install -r requirements.txt`
+
+5. Verify that the application works  
+        `python3 -m magic`
+6. Add `Magic/bin` to your PATH to use `magic`
 
 ### Parameters
 
@@ -85,9 +101,11 @@ This requires a little work-around, as `docopt` stops the execution if it detect
 
 ## Development
 
-**📝 TODO:** Testing
+**📝 TODO:** Installation script
 
 **📝 TODO:** coverage.py
+
+**📝 TODO:** Testing
 
 ## Credits
 
