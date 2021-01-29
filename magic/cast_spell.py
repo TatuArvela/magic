@@ -1,5 +1,5 @@
 from os import system, WEXITSTATUS
-from magic.utils import Colors, in_color
+from magic.utils import Colors, in_color, print_error
 from magic.spellbook import open_spellbook
 
 
@@ -57,5 +57,5 @@ def cast_spell(arguments):
             raise Exception(f'Spell not found for magic word: {magic_word}')
 
     except Exception as error:
-        print(f"""{Colors.RED}🔥 {error}{Colors.RESET}""")
+        print_error(error)
         raise RuntimeError

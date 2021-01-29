@@ -22,13 +22,12 @@ from .add_spell import add_spell
 from .cast_spell import cast_spell
 from .spellbook import show_spell, list_spells
 from .version import __version__
-from .utils import Colors, in_color
+from .utils import Colors, in_color, print_error
 
 VERSION = __version__
 
 
 def main():
-    start_time = datetime.now()
     arguments = docopt(__doc__, version=f'v{__version__}, © 2020 Tatu Arvela')
 
     show_arg = arguments["--show"]
@@ -39,24 +38,40 @@ def main():
 
     if show_arg is True:
         if spell:
-            show_spell(spell=spell, spell_args=spell_args)
+            try:
+                show_spell(spell=spell, spell_args=spell_args)
+            except Exception as error:
+                print_error(error)
         else:
             # Invalid usage
             print(__doc__)
         sys.exit()
 
     if add_arg is True:
-        add_spell()
+        try:
+            add_spell()
+        except Exception as error:
+            print_error(error)
         sys.exit()
 
     if list_arg is True:
-        list_spells()
+        try:
+            list_spells()
+        except Exception as error:
+            print_error(error)
         sys.exit()
+
+    handle_spell_cast(arguments)
+
+
+def handle_spell_cast(arguments):
+    start_time = datetime.now()
 
     try:
         show_success_message = cast_spell(arguments)
         if show_success_message:
             print_result(start_time, success=True)
+
     except RuntimeError:
         print_result(start_time, success=False)
 

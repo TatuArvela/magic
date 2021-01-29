@@ -12,3 +12,7 @@ class Colors:
 
 def in_color(text, color):
     return f'{color}{text}{Colors.RESET}'
+
+
+def print_error(error):
+    print(f"""{Colors.RED}🔥 {error}{Colors.RESET}""")
