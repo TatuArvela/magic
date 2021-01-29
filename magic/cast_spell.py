@@ -4,20 +4,14 @@ from magic.spellbook import get_spells
 
 
 def check_args(arguments_expected, spell_args):
-    if arguments_expected is not None:
-        if len(spell_args) != arguments_expected:
-            raise Exception(f'Not enough arguments, {arguments_expected} expected')
-        else:
-            return spell_args
-    else:
-        return None
+    if arguments_expected is not None and len(spell_args) != arguments_expected:
+        raise Exception(f'Not enough arguments, {arguments_expected} expected')
+    return spell_args
 
 
 def substitute_args(text, args):
-    i = 1
-    for arg in args:
-        text = text.replace('$' + str(i), arg)
-        i = i+1
+    for idx, arg in enumerate(args):
+        text = text.replace('$' + str(idx), arg)
     return text
 
 

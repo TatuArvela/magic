@@ -60,4 +60,4 @@ def show_spell(spell, spell_args):
 
     print(in_color("Arguments provided:", color))
     for idx, arg in enumerate(spell_args):
-        print(f'  {idx + 1}: {arg}')
+        print(f'  {idx}: {arg}')
