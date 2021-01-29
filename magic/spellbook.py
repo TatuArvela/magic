@@ -33,7 +33,7 @@ def open_spellbook():
 def list_spells():
     spellbook = open_spellbook()
     for magic_word, spell in sorted(spellbook.items()):
-        print(f'{in_color(magic_word, Colors.CYAN)}: {spell.get("message")}')
+        print(f'{in_color(magic_word, Colors.CYAN)}: {spell.get("description")}')
 
 
 def show_spell(spell, spell_args):

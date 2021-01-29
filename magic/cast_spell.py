@@ -21,11 +21,13 @@ def substitute_args(text, args):
     return text
 
 
-def display_message(spell, spell_args):
-    message = spell.get("message")
-    if spell_args is not None:
-        message = substitute_args(message, spell_args)
-    print(f'✨  {in_color(message, Colors.CYAN)}')
+def handle_message(spell, spell_args):
+    description = spell.get("description")
+    show_message = spell.get("showMessage")
+    if show_message is not False:
+        if spell_args is not None:
+            description = substitute_args(description, spell_args)
+        print(f'✨  {in_color(description, Colors.CYAN)}')
 
 
 def parse_command(command, spell_args):
@@ -42,13 +44,15 @@ def cast_spell(arguments):
         spell = spellbook.get(magic_word)
 
         if spell:
-            spell_args = check_args(spell.get("argumentsExpected"), spell_args)
-            display_message(spell, spell_args)
+            spell_args = check_args(spell.get('argumentsExpected'), spell_args)
+            handle_message(spell, spell_args)
             for command in spell['commands']:
                 parsed_command = parse_command(command, spell_args)
                 exit_code = WEXITSTATUS(system(parsed_command))
                 if exit_code != 0:
                     raise Exception(f'Command returned exit code {exit_code}')
+            return spell.get('showSuccessMessage') is not False
+
         else:
             raise Exception(f'Spell not found for magic word: {magic_word}')
 

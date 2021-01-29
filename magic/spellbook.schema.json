@@ -7,12 +7,12 @@
     "spell": {
       "type": "object",
       "required": [
-        "message",
+        "description",
         "magicWords",
         "commands"
       ],
       "properties": {
-        "message": {
+        "description": {
           "type": "string"
         },
         "magicWords": {
@@ -29,6 +29,14 @@
         },
         "argumentsExpected": {
           "type": "number"
+        },
+        "showMessage": {
+          "type": "boolean",
+          "default": "true"
+        },
+        "showSuccessMessage": {
+          "type": "boolean",
+          "default": "true"
         }
       }
     }

@@ -54,8 +54,9 @@ def main():
         sys.exit()
 
     try:
-        cast_spell(arguments)
-        print_result(start_time, success=True)
+        show_success_message = cast_spell(arguments)
+        if show_success_message:
+            print_result(start_time, success=True)
     except RuntimeError:
         print_result(start_time, success=False)
 
