@@ -1,6 +1,9 @@
 import json
+import os
+from shutil import copyfile
+
 from fastjsonschema import validate
-from .config import SPELLBOOK_PATH, SPELLBOOK_SCHEMA_PATH
+from .config import SPELLBOOK_PATH, SPELLBOOK_SCHEMA_PATH, DEFAULT_SPELLBOOK_PATH
 from .utils import Colors, in_color
 
 
@@ -24,6 +27,9 @@ def read_spellbook(spellbook_contents):
 
 
 def get_spells():
+    if not os.path.exists(SPELLBOOK_PATH):
+        copyfile(DEFAULT_SPELLBOOK_PATH, SPELLBOOK_PATH)
+
     with open(SPELLBOOK_PATH, 'r') as spellbook_file:
         spellbook_contents = json.load(spellbook_file)
     check_spellbook(spellbook_contents)
