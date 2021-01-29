@@ -17,36 +17,71 @@
 
 ## Usage
 
-**📝 TODO:** Fill documentation
-
 ### Installation
 
+**📝 TODO:** Fill installation documentation
+
 ### Parameters
+
+```
+$ magic --help
+✨  Magic
+
+Usage:
+    magic [-s | --show] <spell> [<args>...]
+    magic -a | --add
+    magic -l | --list
+    magic -h | --help
+    magic -v | --version
+
+Options:
+    -s --show       show spell details
+    -a --add        add spell to spellbook
+    -l --list       list spells in spellbook
+    -h --help       show this
+    -v --version    show version
+```
 
 ### Spell wizard
 
 ### Spell arguments
 
-Spells can have an array of arguments. Each argument must not be empty.
+Spells can have an array of arguments, which are populated according to their index. Excessive usage is considered an anti-pattern.
+
+Example:
 
 ```
 {
-  "description": "Test echo spell with arguments '$1' and '$2'",
+  "description": "Test echo spell with arguments '$0' and '$1'",
   "magicWords": [
     "t",
     "test"
   ],
   "commands": [
-    "echo $1",
-    "echo $2"
+    "echo $0",
+    "echo $1"
   ],
   "argumentsExpected": 2
 },
 ```
 
-**📝 TODO:** Enabling `n` arguments
+```
+$ magic test cat dog
+✨  Test echo spell with arguments 'cat' and 'dog'
+cat
+dog
+✅  17:00:00 Success ⏱  0:00:00
+```
 
-**📝 TODO:** Ensuring no clashes with `docopt`
+#### Advanced usage: Empty arguments
+
+Argument are handled as an array, so arguments can not be empty. As a work-around they may be substituted with an empty string: `''`.
+
+#### Advanced usage: Spell options
+
+It is possible to provide options (`--option`) as arguments to spells. This is not intended usage, but may be useful to some.
+
+This requires a little work-around, as `docopt` stops the execution if it detects unknown options. You can provide the options your spell requires by adding a space and quotes `' --option'`.
 
 ## Development
 
