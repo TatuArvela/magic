@@ -1,13 +1,14 @@
 """✨  \u001b[34mMagic\u001b[0m
 
 Usage:
-    magic [--show] <spell> [<args>...]
-    magic -s | --show
+    magic [-s | --show] <spell> [<args>...]
+    magic -l | --list
     magic -h | --help
     magic -v | --version
 
 Options:
-    -s --show       show spell(s)
+    -s --show       show spell
+    -l --list       list spells
     -h --help       show this
     -v --version    show version"""
 
