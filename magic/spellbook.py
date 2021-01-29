@@ -47,7 +47,7 @@ def show_spell(spell, spell_args):
     spell = spells.get(spell)
     color = Colors.MAGENTA
 
-    print(f'{in_color("Message:", color)} {spell["message"]}')
+    print(f'{in_color("Description:", color)} {spell["description"]}')
     print(f'{in_color("Magic words:", color)} {spell["magicWords"]}')
     print(in_color("Commands:", color))
     for command in spell['commands']:
