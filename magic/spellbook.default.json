@@ -9,6 +9,6 @@
       "echo $0",
       "echo $1"
     ],
-    "argumentsExpected": 2
+    "argumentsRequired": 2
   }
 ]

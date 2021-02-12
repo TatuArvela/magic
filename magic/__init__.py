@@ -1,4 +1,4 @@
-"""✨  \u001b[34mMagic\u001b[0m
+"""A tool for simplifying repeated command line tasks
 
 Usage:
     magic [-s | --show] <spell> [<args>...]
@@ -25,10 +25,12 @@ from .version import __version__
 from .utils import Colors, in_color, print_error
 
 VERSION = __version__
+VERSION_STRING = f'✨ {in_color("Magic", Colors.BLUE)} v{__version__}, © 2021 Tatu Arvela'
+DOC_STRING = f'{VERSION_STRING}\n{__doc__}'
 
 
 def main():
-    arguments = docopt(__doc__, version=f'v{__version__}, © 2020 Tatu Arvela')
+    arguments = docopt(DOC_STRING, version=VERSION_STRING)
 
     show_arg = arguments["--show"]
     add_arg = arguments["--add"]

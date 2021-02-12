@@ -48,15 +48,17 @@ def show_spell(spell, spell_args):
     color = Colors.MAGENTA
 
     print(f'{in_color("Description:", color)} {spell["description"]}')
-    print(f'{in_color("Magic words:", color)} {spell["magicWords"]}')
+    print(f'{in_color("Magic words:", color)} {", ".join(spell["magicWords"])}')
     print(in_color("Commands:", color))
     for command in spell['commands']:
-        print(f'  {command}')
+        print(f'{command}')
 
-    arguments_expected = spell.get("argumentsExpected")
-    if arguments_expected is not None:
-        arg_color = Colors.GREEN if len(spell_args) == arguments_expected else Colors.RED
-        print(f'{in_color("Arguments expected:", color)} {in_color(arguments_expected, arg_color)}')
+    arguments_required = spell.get("argumentsRequired")
+    if arguments_required is None:
+        print(f'{in_color("Arguments required:", color)} None')
+    else:
+        arg_color = Colors.GREEN if len(spell_args) == arguments_required else Colors.RED
+        print(f'{in_color("Arguments required:", color)} {in_color(arguments_required, arg_color)}')
 
     print(in_color("Arguments provided:", color))
     for idx, arg in enumerate(spell_args):

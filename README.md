@@ -12,6 +12,10 @@
   e.g. `magic say abra kadabra`
 * The execution time of spells is measured by default
 * **📝 TODO:** Spells can be entered into the spellbook using a **wizard**
+    * Check for magic word clashes
+    * Save to spellbook
+    * Fix error "'utf-8' codec can't decode bytes in position 8-9: invalid continuation byte"
+* **📝 TODO:** Use Python template strings
 * **📝 TODO:** Spells can be edited
 * **📝 TODO:** Spells can be removed
 
@@ -77,7 +81,7 @@ Example:
     "echo $0",
     "echo $1"
   ],
-  "argumentsExpected": 2
+  "argumentsRequired": 2
 },
 ```
 

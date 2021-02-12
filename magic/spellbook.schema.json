@@ -27,7 +27,7 @@
             "type": "string"
           }
         },
-        "argumentsExpected": {
+        "argumentsRequired": {
           "type": "number"
         },
         "showMessage": {
