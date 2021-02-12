@@ -81,7 +81,7 @@ def print_result(start_time, success):
     elapsed_time = datetime.now() - start_time
     elapsed_time = elapsed_time - timedelta(microseconds=elapsed_time.microseconds)
 
-    emoji = '✅ ' if success else '❌️'
+    emoji = '✅' if success else '❌️'
     message = in_color('Success', Colors.GREEN) if success else in_color('Failure', Colors.RED)
 
-    print(f'{emoji} {in_color(current_time, Colors.CYAN)} {message} ⏱  {elapsed_time}')
+    print(f'{emoji} {in_color(current_time, Colors.CYAN)} {message} ⏱ {elapsed_time}')

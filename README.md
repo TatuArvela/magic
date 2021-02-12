@@ -86,7 +86,7 @@ $ magic test cat dog
 ✨  Test echo spell with arguments 'cat' and 'dog'
 cat
 dog
-✅  17:00:00 Success ⏱  0:00:00
+✅ 17:00:00 Success ⏱ 0:00:00
 ```
 
 #### Advanced usage: Empty arguments
