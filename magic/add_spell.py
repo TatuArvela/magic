@@ -15,9 +15,9 @@ def step():
 def add_spell():
     print(f'{in_color("🧙 Adding a new spell to your spellbook", color)}')
 
-    description = prompt(f'{step()}. Enter a description. You may use $0, $1, etc. to be shown as part of the message.', validate=validate_required)
+    description = prompt(f'{step()}. Enter a description. You may use $a0, $a1, etc. to be shown as part of the message.', validate=validate_required)
     magic_words = prompt(f'{step()}. Enter magic words, separated by a comma:', validate=validate_required)
-    commands = multiline_prompt(f'{step()}. Enter commands to be run in the spell, separated by line breaks. You may use $0, $1, etc. to provide arguments. Leave an empty line to stop.')
+    commands = multiline_prompt(f'{step()}. Enter commands to be run in the spell, separated by line breaks. You may use $a0, $a1, etc. to provide arguments. Leave an empty line to stop.')
     arguments_required = prompt(f'{step()}. Enter the number of arguments required', validate=validate_number, default='0')
     show_message = prompt(f'{step()}. Show message when casting the spell, y or n?', validate=validate_yes_no, default='y')
     show_success_message = prompt(f'{step()}. Show success message, y or n?', validate=validate_yes_no, default='y')

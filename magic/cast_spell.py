@@ -1,18 +1,19 @@
 from os import system, WEXITSTATUS
+from string import Template
 from magic.utils import Colors, in_color, print_error
 from magic.spellbook import get_spells
 
 
 def check_args(arguments_required, spell_args):
-    if arguments_required is not None and len(spell_args) != arguments_required:
+    if arguments_required is not None and len(spell_args) < arguments_required:
         raise Exception(f'Not enough arguments, {arguments_required} required')
     return spell_args
 
 
 def substitute_args(text, args):
-    for idx, arg in enumerate(args):
-        text = text.replace('$' + str(idx), arg)
-    return text
+    template = Template(text)
+    args_dict = {f'a{index}': arg for index, arg in enumerate(args)}
+    return template.substitute(**args_dict)
 
 
 def handle_message(spell, spell_args):

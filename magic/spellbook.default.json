@@ -1,13 +1,13 @@
 [
   {
-    "description": "Test echo spell with arguments '$0' and '$1'",
+    "description": "Test echo spell with arguments '$a0' and '$a1'",
     "magicWords": [
       "t",
       "test"
     ],
     "commands": [
-      "echo $0",
-      "echo $1"
+      "echo $a0",
+      "echo $a1"
     ],
     "argumentsRequired": 2
   }

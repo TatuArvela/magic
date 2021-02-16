@@ -15,7 +15,6 @@
     * Check for magic word clashes
     * Save to spellbook
     * Fix error "'utf-8' codec can't decode bytes in position 8-9: invalid continuation byte"
-* **📝 TODO:** Use Python template strings
 * **📝 TODO:** Spells can be edited
 * **📝 TODO:** Spells can be removed
 
@@ -72,14 +71,14 @@ Example:
 
 ```
 {
-  "description": "Test echo spell with arguments '$0' and '$1'",
+  "description": "Test echo spell with arguments '$a0' and '$a1'",
   "magicWords": [
     "t",
     "test"
   ],
   "commands": [
-    "echo $0",
-    "echo $1"
+    "echo $a0",
+    "echo $a1"
   ],
   "argumentsRequired": 2
 },
