@@ -14,7 +14,6 @@
 * **📝 TODO:** Spells can be entered into the spellbook using a **wizard**
     * Check for magic word clashes
     * Save to spellbook
-    * Fix error "'utf-8' codec can't decode bytes in position 8-9: invalid continuation byte"
 * **📝 TODO:** Spells can be edited
 * **📝 TODO:** Spells can be removed
 
