@@ -1,4 +1,5 @@
-from .utils import Colors, in_color, create_prompt, validate_yes_no, validate_number, validate_required
+import re
+from .utils import Colors, in_color, create_prompt, validate_yes_no, validate_required
 
 color = Colors.CYAN
 prompt = create_prompt(color)
@@ -12,13 +13,24 @@ def step():
     return step_index
 
 
+def count_arguments(description, commands):
+    arg_matcher = "\\$a[0-9]+"
+
+    combined_strings = f"{description} {' '.join(commands)}"
+    args = re.findall(arg_matcher, combined_strings)
+    for index, arg in enumerate(args):
+        args[index] = int(arg.replace("$a", ""))
+
+    args.sort()
+    return args[-1]
+
+
 def add_spell():
     print(f'{in_color("🧙 Adding a new spell to your spellbook", color)}')
 
     description = prompt(f'{step()}. Enter a description. You may use $a0, $a1, etc. to be shown as part of the message.', validate=validate_required)
     magic_words = prompt(f'{step()}. Enter magic words, separated by a comma:', validate=validate_required)
     commands = multiline_prompt(f'{step()}. Enter commands to be run in the spell, separated by line breaks. You may use $a0, $a1, etc. to provide arguments. Leave an empty line to stop.')
-    arguments_required = prompt(f'{step()}. Enter the number of arguments required', validate=validate_number, default='0')
     show_message = prompt(f'{step()}. Show message when casting the spell, y or n?', validate=validate_yes_no, default='y')
     show_success_message = prompt(f'{step()}. Show success message, y or n?', validate=validate_yes_no, default='y')
 
@@ -28,11 +40,9 @@ def add_spell():
 
     spell = {
         "description": description,
-        "magicWords": ",".join(magic_words),
-        "commands": ",".join(commands),
-        "argumentsRequired": arguments_required,
+        "magicWords": magic_words,
+        "commands": commands,
+        "argumentCount": count_arguments(description, commands),
         "showMessage": show_message,
         "showSuccessMessage": show_success_message
     }
-
-    print(spell)

@@ -80,7 +80,7 @@ Example:
     "echo $a0",
     "echo $a1"
   ],
-  "argumentsRequired": 2
+  "argumentCount": 2
 },
 ```
 

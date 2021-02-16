@@ -53,12 +53,12 @@ def show_spell(spell, spell_args):
     for command in spell['commands']:
         print(f'{command}')
 
-    arguments_required = spell.get("argumentsRequired")
-    if arguments_required is None:
+    argument_count = spell.get("argumentCount")
+    if argument_count is None:
         print(f'{in_color("Arguments required:", color)} None')
     else:
-        arg_color = Colors.GREEN if len(spell_args) == arguments_required else Colors.RED
-        print(f'{in_color("Arguments required:", color)} {in_color(arguments_required, arg_color)}')
+        arg_color = Colors.GREEN if len(spell_args) == argument_count else Colors.RED
+        print(f'{in_color("Arguments required:", color)} {in_color(argument_count, arg_color)}')
 
     print(in_color("Arguments provided:", color))
     for idx, arg in enumerate(spell_args):

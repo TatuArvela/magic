@@ -4,9 +4,9 @@ from magic.utils import Colors, in_color, print_error
 from magic.spellbook import get_spells
 
 
-def check_args(arguments_required, spell_args):
-    if arguments_required is not None and len(spell_args) < arguments_required:
-        raise Exception(f'Not enough arguments, {arguments_required} required')
+def check_args(argument_count, spell_args):
+    if argument_count is not None and len(spell_args) < argument_count:
+        raise Exception(f'Not enough arguments, {argument_count} required')
     return spell_args
 
 
@@ -39,7 +39,7 @@ def cast_spell(arguments):
         spell = spells.get(magic_word)
 
         if spell:
-            spell_args = check_args(spell.get('argumentsRequired'), spell_args)
+            spell_args = check_args(spell.get('argumentCount'), spell_args)
             handle_message(spell, spell_args)
 
             executable_commands = ''
