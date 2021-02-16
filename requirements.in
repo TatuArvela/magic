@@ -1,0 +1,6 @@
+bandit
+black
+docopt
+pylint
+pytest
+fastjsonschema

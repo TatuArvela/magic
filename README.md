@@ -1,16 +1,117 @@
 # Magic
 
-**✨ Magic** is a shortcut and abstraction tool for command line scripts. It can be used to simplify often repeated tasks such as starting servers and deploying applications. It is designed to be customizable to fit various needs.
+**✨ Magic** is a tool for simplifying repeated command line tasks.
 
-Scripts and tasks are called **spells**, which can be defined in a YAML file called the **spellbook** (`spellbook.yml`). Each spell has a **message**, one or several **magic words** (identifiers) and one or several **conjurations** (console commands). Several spells can be cast in succession by separating them with a comma (`,`), for example `magic start-dev-server, deploy-frontend dev`. Spells can also have short forms, for example `magic sd, df dev`.
+## Concepts
 
-Variables can be passed on the command line (`magic spell variable1 variable2 ...`) or they can be predefined in the `environment_variables` section of the `config.yml` file. The amount of passed variables required by a spell can be defined in the spellbook with the optional field `variables_required`.
+* **Magic** simplifies a set of commands into a **spell**
+* Spells are written into the **spellbook** (`Spellbook.json`)
+* Each spell has one or several **magic words** that can be used to call it  
+  e.g. `magic build-app` and `magic ba`
+* Spells can have **arguments** passed to them  
+  e.g. `magic say abra kadabra`
+* The execution time of spells is measured by default
+* **📝 TODO:** Spells can be entered into the spellbook using a **wizard**
+    * Check for magic word clashes
+    * Save to spellbook
+    * Fix error "'utf-8' codec can't decode bytes in position 8-9: invalid continuation byte"
+* **📝 TODO:** Use Python template strings
+* **📝 TODO:** Spells can be edited
+* **📝 TODO:** Spells can be removed
 
-## Installation instructions for Ubuntu 17.10+
+## Usage
 
-1. Install Python 3
-2. Copy the application to `/home/<username>/bin/` (If this folder does not yet exist, create it and log out and back in)
-3. Make a copy of `spellbook.yml` to `/home/<username>/.config/magic/spellbook.yml`
-4. Make a copy of `config.yml` to `/home/<username>/.config/magic/config.yml`
-5. Check that the application works by running `magic`
-6. Add your own configurations to your spellbook
+### Installation
+
+Installation is currently manual. Follow the instructions below.
+
+Requirements: Python 3
+
+1. Clone the project somewhere and navigate to it on the command line
+2. Create a virtual env  
+        `python3 -m venv env`
+
+3. Activate the virtual environment  
+        `source env/bin/activate`
+
+4. Install the requirements  
+        `pip install -r requirements.txt`
+
+5. Verify that the application works  
+        `python3 -m magic`
+6. Add `Magic/bin` to your PATH to use `magic`
+
+### Parameters
+
+```
+$ magic --help
+✨  Magic
+
+Usage:
+    magic [-s | --show] <spell> [<args>...]
+    magic -a | --add
+    magic -l | --list
+    magic -h | --help
+    magic -v | --version
+
+Options:
+    -s --show       show spell details
+    -a --add        add spell to spellbook
+    -l --list       list spells in spellbook
+    -h --help       show this
+    -v --version    show version
+```
+
+### Spell wizard
+
+### Spell arguments
+
+Spells can have an array of arguments, which are populated according to their index. Excessive usage is considered an anti-pattern.
+
+Example:
+
+```
+{
+  "description": "Test echo spell with arguments '$0' and '$1'",
+  "magicWords": [
+    "t",
+    "test"
+  ],
+  "commands": [
+    "echo $0",
+    "echo $1"
+  ],
+  "argumentsRequired": 2
+},
+```
+
+```
+$ magic test cat dog
+✨  Test echo spell with arguments 'cat' and 'dog'
+cat
+dog
+✅ 17:00:00 Success ⏱ 0:00:00
+```
+
+#### Advanced usage: Empty arguments
+
+Argument are handled as an array, so arguments can not be empty. As a work-around they may be substituted with an empty string: `''`.
+
+#### Advanced usage: Spell options
+
+It is possible to provide options (`--option`) as arguments to spells. This is not intended usage, but may be useful to some.
+
+This requires a little work-around, as `docopt` stops the execution if it detects unknown options. You can provide the options your spell requires by adding a space and quotes `' --option'`.
+
+## Development
+
+**📝 TODO:** Installation script
+
+**📝 TODO:** coverage.py
+
+**📝 TODO:** Testing
+
+## Credits
+
+* I used [MartinHeinz/python-project-blueprint](https://github.com/MartinHeinz/python-project-blueprint) as a basic guide for creating a proper Python project. Thank you, Martin!
+* Developed with the support of my employer, [Nitor](https://nitor.com/)

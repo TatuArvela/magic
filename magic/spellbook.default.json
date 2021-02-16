@@ -1,0 +1,14 @@
+[
+  {
+    "description": "Test echo spell with arguments '$0' and '$1'",
+    "magicWords": [
+      "t",
+      "test"
+    ],
+    "commands": [
+      "echo $0",
+      "echo $1"
+    ],
+    "argumentsRequired": 2
+  }
+]
