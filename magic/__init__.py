@@ -14,17 +14,17 @@ Options:
     -h --help       show this
     -v --version    show version"""
 
-import sys
 from datetime import datetime, timedelta
 from docopt import docopt
+from sys import exit
 
-from .add_spell import add_spell
-from .cast_spell import cast_spell
-from .spellbook import show_spell, list_spells
-from .version import __version__
-from .utils import Colors, in_color, print_error
+from magic.add import add_spell
+from magic.cast import cast_spell
+from magic.show import show_spell
+from magic.list import list_spells
+from magic._version import __version__
+from magic.utils.display import Colors, in_color, print_error
 
-VERSION = __version__
 VERSION_STRING = f'✨ {in_color("Magic", Colors.BLUE)} v{__version__}, © 2021 Tatu Arvela'
 DOC_STRING = f'{VERSION_STRING}\n{__doc__}'
 
@@ -47,21 +47,21 @@ def main():
         else:
             # Invalid usage
             print(__doc__)
-        sys.exit()
+        exit()
 
     if add_arg is True:
         try:
             add_spell()
         except Exception as error:
             print_error(error)
-        sys.exit()
+        exit()
 
     if list_arg is True:
         try:
             list_spells()
         except Exception as error:
             print_error(error)
-        sys.exit()
+        exit()
 
     handle_spell_cast(arguments)
 

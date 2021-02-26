@@ -1,5 +1,9 @@
 import re
-from .utils import Colors, in_color, create_prompt, validate_yes_no, validate_required
+
+from magic.utils.display import Colors, in_color
+from magic.utils.prompt import create_prompt
+from magic.utils.spellbook import write_spell
+from magic.utils.validate import is_y_or_n, is_not_empty, magic_word_validator
 
 color = Colors.CYAN
 prompt = create_prompt(color)
@@ -20,22 +24,32 @@ def count_arguments(description, commands):
     args = re.findall(arg_matcher, combined_strings)
     for index, arg in enumerate(args):
         args[index] = int(arg.replace("$a", ""))
-
     args.sort()
+
+    if len(args) == 0:
+        return 0
     return args[-1]
 
 
 def add_spell():
     print(f'{in_color("🧙 Adding a new spell to your spellbook", color)}')
 
-    description = prompt(f'{step()}. Enter a description. You may use $a0, $a1, etc. to be shown as part of the message.', validate=validate_required)
-    magic_words = prompt(f'{step()}. Enter magic words, separated by a comma:', validate=validate_required)
-    commands = multiline_prompt(f'{step()}. Enter commands to be run in the spell, separated by line breaks. You may use $a0, $a1, etc. to provide arguments. Leave an empty line to stop.')
-    show_message = prompt(f'{step()}. Show message when casting the spell, y or n?', validate=validate_yes_no, default='y')
-    show_success_message = prompt(f'{step()}. Show success message, y or n?', validate=validate_yes_no, default='y')
+    description = prompt(
+        f'{step()}. Enter a description. You may use $a0, $a1, etc. to be shown as part of the message.',
+        validate=is_not_empty)
 
+    magic_words = prompt(f'{step()}. Enter magic words, separated by a comma:', validate=magic_word_validator())
     magic_words = [word.strip(' ') for word in magic_words.split(',')]
+
+    commands = multiline_prompt(
+        f'{step()}. Enter commands to be run in the spell, separated by line breaks. '
+        f'You may use $a0, $a1, etc. to provide arguments. Leave an empty line to stop.')
+
+    show_message = prompt(f'{step()}. Show message when casting the spell, y or n?', validate=is_y_or_n,
+                          default='y')
     show_message = show_message == 'y'
+
+    show_success_message = prompt(f'{step()}. Show success message, y or n?', validate=is_y_or_n, default='y')
     show_success_message = show_success_message == 'y'
 
     spell = {
@@ -46,3 +60,5 @@ def add_spell():
         "showMessage": show_message,
         "showSuccessMessage": show_success_message
     }
+
+    write_spell(spell)

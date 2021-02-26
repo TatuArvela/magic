@@ -11,9 +11,6 @@
 * Spells can have **arguments** passed to them  
   e.g. `magic say abra kadabra`
 * The execution time of spells is measured by default
-* **📝 TODO:** Spells can be entered into the spellbook using a **wizard**
-    * Check for magic word clashes
-    * Save to spellbook
 * **📝 TODO:** Spells can be edited
 * **📝 TODO:** Spells can be removed
 

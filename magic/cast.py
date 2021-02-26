@@ -1,7 +1,8 @@
 from os import system, WEXITSTATUS
 from string import Template
-from magic.utils import Colors, in_color, print_error
-from magic.spellbook import get_spells
+
+from magic.utils.display import Colors, in_color, print_error
+from magic.utils.spellbook import get_spells
 
 
 def check_args(argument_count, spell_args):
