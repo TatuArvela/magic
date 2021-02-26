@@ -18,12 +18,12 @@ default_spell = {
 }
 
 
-def create_spellbook():
+def __create_spellbook():
     with open(SPELLBOOK_PATH, 'x') as file:
         json.dump([default_spell], file, indent=SPELLBOOK_INDENTATION)
 
 
-def validate_spellbook(spellbook_contents):
+def __validate_spellbook(spellbook_contents):
     try:
         with open(SPELLBOOK_SCHEMA_PATH, 'r') as file:
             schema = json.load(file)
@@ -32,17 +32,17 @@ def validate_spellbook(spellbook_contents):
         raise Exception(f'Spellbook is invalid: {error}')
 
 
-def open_spellbook():
+def __open_spellbook():
     if not path.exists(SPELLBOOK_PATH):
-        create_spellbook()
+        __create_spellbook()
     with open(SPELLBOOK_PATH, 'r') as file:
         spellbook = json.load(file)
-        validate_spellbook(spellbook)
+        __validate_spellbook(spellbook)
         return spellbook
 
 
 def get_spells():
-    spellbook = open_spellbook()
+    spellbook = __open_spellbook()
     spells = dict()
     for entry in spellbook:
         for magic_word in entry['magicWords']:
@@ -50,6 +50,11 @@ def get_spells():
                 raise Exception(f'Spellbook has duplicated magic word: {magic_word}')
             spells[magic_word] = entry
     return spells
+
+
+def get(magic_word):
+    spells = get_spells()
+    return spells.get(magic_word)
 
 
 def write(spell):

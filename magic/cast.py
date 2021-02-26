@@ -2,50 +2,49 @@ from os import system, WEXITSTATUS
 from string import Template
 
 from magic.utils.display import Colors, in_color, print_error
-from magic.utils.spellbook import get_spells
+from magic.utils.spellbook import get
 
 
-def check_args(argument_count, spell_args):
+def __check_args(argument_count, spell_args):
     if argument_count is not None and len(spell_args) < argument_count:
         raise Exception(f'Not enough arguments, {argument_count} required')
     return spell_args
 
 
-def substitute_args(text, args):
+def __substitute_args(text, args):
     template = Template(text)
     args_dict = {f'a{index}': arg for index, arg in enumerate(args)}
     return template.substitute(**args_dict)
 
 
-def handle_message(spell, spell_args):
+def __handle_message(spell, spell_args):
     description = spell.get("description")
     show_message = spell.get("showMessage")
     if show_message is not False:
         if spell_args is not None:
-            description = substitute_args(description, spell_args)
+            description = __substitute_args(description, spell_args)
         print(f'✨  {in_color(description, Colors.CYAN)}')
 
 
-def parse_command(command, spell_args):
+def __parse_command(command, spell_args):
     if spell_args is not None:
-        command = substitute_args(command, spell_args)
+        command = __substitute_args(command, spell_args)
     return command
 
 
 def cast_spell(arguments):
     try:
-        spells = get_spells()
         magic_word = arguments['<spell>']
         spell_args = arguments['<args>']
-        spell = spells.get(magic_word)
+        spell = get(magic_word)
 
         if spell:
-            spell_args = check_args(spell.get('argumentCount'), spell_args)
-            handle_message(spell, spell_args)
+            spell_args = __check_args(spell.get('argumentCount'), spell_args)
+            __handle_message(spell, spell_args)
 
             executable_commands = ''
             for command in spell['commands']:
-                parsed_command = parse_command(command, spell_args)
+                parsed_command = __parse_command(command, spell_args)
                 executable_commands = f"{executable_commands}\n{parsed_command}"
 
             exit_code = WEXITSTATUS(system(executable_commands))

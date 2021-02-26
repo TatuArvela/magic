@@ -11,13 +11,13 @@ multiline_prompt = create_prompt(color, multiline=True)
 step_index = 0
 
 
-def step():
+def __step():
     global step_index
     step_index += 1
     return step_index
 
 
-def count_arguments(description, commands):
+def __count_arguments(description, commands):
     arg_matcher = "\\$a[0-9]+"
 
     combined_strings = f"{description} {' '.join(commands)}"
@@ -35,28 +35,28 @@ def add_spell():
     print(f'{in_color("🧙 Adding a new spell to your spellbook", color)}')
 
     description = prompt(
-        f'{step()}. Enter a description. You may use $a0, $a1, etc. to be shown as part of the message.',
+        f'{__step()}. Enter a description. You may use $a0, $a1, etc. to be shown as part of the message.',
         validate=is_not_empty)
 
-    magic_words = prompt(f'{step()}. Enter magic words, separated by a comma:', validate=magic_word_validator())
+    magic_words = prompt(f'{__step()}. Enter magic words, separated by a comma:', validate=magic_word_validator())
     magic_words = [word.strip(' ') for word in magic_words.split(',')]
 
     commands = multiline_prompt(
-        f'{step()}. Enter commands to be run in the spell, separated by line breaks. '
+        f'{__step()}. Enter commands to be run in the spell, separated by line breaks. '
         f'You may use $a0, $a1, etc. to provide arguments. Leave an empty line to stop.')
 
-    show_message = prompt(f'{step()}. Show message when casting the spell, y or n?', validate=is_y_or_n,
+    show_message = prompt(f'{__step()}. Show message when casting the spell, y or n?', validate=is_y_or_n,
                           default='y')
     show_message = show_message == 'y'
 
-    show_success_message = prompt(f'{step()}. Show success message, y or n?', validate=is_y_or_n, default='y')
+    show_success_message = prompt(f'{__step()}. Show success message, y or n?', validate=is_y_or_n, default='y')
     show_success_message = show_success_message == 'y'
 
     spell = {
         "description": description,
         "magicWords": magic_words,
         "commands": commands,
-        "argumentCount": count_arguments(description, commands),
+        "argumentCount": __count_arguments(description, commands),
         "showMessage": show_message,
         "showSuccessMessage": show_success_message
     }

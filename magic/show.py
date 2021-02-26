@@ -1,10 +1,9 @@
-from magic.utils.spellbook import get_spells
+from magic.utils.spellbook import get
 from magic.utils.display import Colors, in_color
 
 
 def show_spell(magic_word, spell_args):
-    spells = get_spells()
-    spell = spells.get(magic_word)
+    spell = get(magic_word)
     color = Colors.MAGENTA
 
     if not spell:
