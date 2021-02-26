@@ -15,34 +15,25 @@
 Installation is currently manual. Follow the instructions below.
 
 * Supported operating systems: macOS (untested on Linux and Windows)
-* Requirements: Python 3
+* Requirements: Python 3, Make
 
 1. Clone the Git repository somewhere and navigate to it on the command line
    ```
    git clone https://github.com/TatuArvela/Magic.git
    cd Magic
    ```
-2. Create a virtual env  
+
+2. Create a virtual env and install requirements
    ```
-   python3 -m venv env
-   ```
-    
-3. Activate the virtual environment  
-   ```
-   source env/bin/activate
+   make install
    ```
 
-4. Install the requirements  
-   ```
-   pip install -r requirements.txt
-   ```
-
-5. Verify that the application works  
+3. Verify that the application works
    ```
    python3 -m magic
    ```
 
-6. Add `Magic/bin` to your PATH in your `.bashrc`, `.zshrc` or other configuration file
+4. Add `Magic/bin` to your PATH in your `.bashrc`, `.zshrc` or other configuration file
     ```
     # Magic
     export PATH="$PATH:<CLONING_DIRECTORY_HERE>/Magic/bin"
@@ -121,13 +112,12 @@ the options your spell requires by adding a space and quotes `' --option'`.
 
 ### TODO before v3.0.0 release
 
-* Installation script
 * Release pipeline
 * coverage.py
 * Testing
 
 ## Credits
 
-* I used [MartinHeinz/python-project-blueprint](https://github.com/MartinHeinz/python-project-blueprint) as a basic
-  guide for making a Python project
+* I used [MartinHeinz/python-project-blueprint](https://github.com/MartinHeinz/python-project-blueprint) as a starting
+  point for making a proper Python project
 * Developed with the support of my employer, [Nitor](https://nitor.com/)

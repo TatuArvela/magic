@@ -1,6 +1,6 @@
-bandit
 black
 docopt
-pylint
-pytest
 fastjsonschema
+flake8
+isort
+pytest

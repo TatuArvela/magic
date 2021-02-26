@@ -2,24 +2,29 @@ MODULE := magic
 BLUE=\033[0;34m
 NC=\033[0m
 
-enable_env:
-	source ./env/bin/activate
+venv:
+	. ./venv/bin/activate
 
-run:
-	@python -m $(MODULE)
+install:
+	python3 -m venv venv
+	. ./venv/bin/activate
+	python3 -m pip install -r requirements.txt
 
 test:
 	@pytest
 
 lint:
-	@echo "\n${BLUE}Running Pylint against source and test files...${NC}\n"
-	@-pylint --rcfile=setup.cfg **/*.py
-	@echo "\n${BLUE}Running Flake8 against source and test files...${NC}\n"
-	@-flake8
-	@echo "\n${BLUE}Running Bandit against source files...${NC}\n"
-	@-bandit -r --ini setup.cfg
+	@echo "${BLUE}Running isort against source and test files...${NC}"
+	@-isort .
+	@echo "\n${BLUE}Running Black against source and test files...${NC}"
+	@-black .
+	@echo "\n${BLUE}Running Flake8 against source and test files...${NC}"
+	@-flake8 .
 
 clean:
 	rm -rf .pytest_cache .coverage .pytest_cache coverage.xml
+
+delete_venv:
+	rm -rf venv
 
 .PHONY: clean test

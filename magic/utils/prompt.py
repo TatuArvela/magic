@@ -1,4 +1,4 @@
-from magic.utils.display import Colors, in_color, clear_last_line
+from magic.utils.display import Colors, clear_last_line, in_color
 
 
 def create_prompt(color=Colors.WHITE, multiline=False):

@@ -19,20 +19,23 @@ Options:
     -v --version    show version"""
 import subprocess
 from datetime import datetime, timedelta
-from docopt import docopt
 from sys import exit
 
+from docopt import docopt
+
+from magic._version import __version__
 from magic.add import add_spell
 from magic.cast import cast_spell
 from magic.config import SPELLBOOK_EDITOR, SPELLBOOK_PATH
 from magic.delete import delete_spell
-from magic.show import show_spell
 from magic.list import list_spells
-from magic._version import __version__
+from magic.show import show_spell
 from magic.utils.display import Colors, in_color, print_error
 
-VERSION_STRING = f'✨ {in_color("Magic", Colors.BLUE)} v{__version__}, © 2021 Tatu Arvela'
-DOC_STRING = f'{VERSION_STRING}\n{__doc__}'
+VERSION_STRING = (
+    f'✨ {in_color("Magic", Colors.BLUE)} v{__version__}, © 2021 Tatu Arvela'
+)
+DOC_STRING = f"{VERSION_STRING}\n{__doc__}"
 
 
 def main():
@@ -88,11 +91,15 @@ def handle_spell_cast(arguments):
 
 
 def print_result(start_time, success):
-    current_time = datetime.now().strftime('%H:%M:%S')
+    current_time = datetime.now().strftime("%H:%M:%S")
     elapsed_time = datetime.now() - start_time
     elapsed_time = elapsed_time - timedelta(microseconds=elapsed_time.microseconds)
 
-    emoji = '✅' if success else '❌️'
-    message = in_color('Success', Colors.GREEN) if success else in_color('Failure', Colors.RED)
+    emoji = "✅" if success else "❌️"
+    message = (
+        in_color("Success", Colors.GREEN)
+        if success
+        else in_color("Failure", Colors.RED)
+    )
 
-    print(f'{emoji} {in_color(current_time, Colors.CYAN)} {message} ⏱ {elapsed_time}')
+    print(f"{emoji} {in_color(current_time, Colors.CYAN)} {message} ⏱ {elapsed_time}")

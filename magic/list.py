@@ -1,5 +1,5 @@
+from magic.utils.display import Colors, in_color
 from magic.utils.spellbook import get_spells
-from magic.utils.display import in_color, Colors
 
 
 def list_spells():

@@ -10,7 +10,9 @@ prompt = create_prompt(color)
 
 def delete_spell(magic_word):
     show_spell(magic_word, spell_args=[])
-    confirm = prompt(f'Do you want to delete this spell, y or n?', validate=is_y_or_n, default='n')
+    confirm = prompt(
+        "Do you want to delete this spell, y or n?", validate=is_y_or_n, default="n"
+    )
 
-    if confirm == 'y':
+    if confirm == "y":
         delete(magic_word)
