@@ -1,40 +1,54 @@
 # Magic
 
-**✨ Magic** is a tool for simplifying repeated command line tasks.
+**✨ Magic** is a tool for wrapping repeated command line tasks into simple scripts.
 
-## Concepts
-
-* **Magic** simplifies a set of commands into a **spell**
-* Spells are written into the **spellbook** (`spellbook.json`)
-* Each spell has one or several **magic words** that can be used to call it  
+* A set of commands is saved as a **spell**
+* Spells are written into the **spellbook** file (`spellbook.json`)
+* Each spell can be called with one or several **magic words**  
   e.g. `magic build-app` and `magic ba`
 * Spells can have **arguments** passed to them  
   e.g. `magic say abra kadabra`
-* The execution time of spells is measured by default
+* The execution time of spells is reported by default
 
-## Usage
-
-### Installation
+## Installation
 
 Installation is currently manual. Follow the instructions below.
 
-Requirements: Python 3
+* Supported operating systems: macOS (untested on Linux and Windows)
+* Requirements: Python 3
 
-1. Clone the project somewhere and navigate to it on the command line
+1. Clone the Git repository somewhere and navigate to it on the command line
+   ```
+   git clone https://github.com/TatuArvela/Magic.git
+   cd Magic
+   ```
 2. Create a virtual env  
-   `python3 -m venv env`
-
+   ```
+   python3 -m venv env
+   ```
+    
 3. Activate the virtual environment  
-   `source env/bin/activate`
+   ```
+   source env/bin/activate
+   ```
 
 4. Install the requirements  
-   `pip install -r requirements.txt`
+   ```
+   pip install -r requirements.txt
+   ```
 
 5. Verify that the application works  
-   `python3 -m magic`
-6. Add `Magic/bin` to your PATH to use `magic`
+   ```
+   python3 -m magic
+   ```
 
-### Parameters
+6. Add `Magic/bin` to your PATH in your `.bashrc`, `.zshrc` or other configuration file
+    ```
+    # Magic
+    export PATH="$PATH:<CLONING_DIRECTORY_HERE>/Magic/bin"
+    ```
+
+## Usage
 
 ```
 $ magic --help
@@ -60,7 +74,7 @@ Options:
     -v --version    show version
 ```
 
-### Spell wizard
+Editing a spell is currently done with an external editor (**Visual Studio Code** by default).
 
 ### Spell arguments
 
@@ -105,14 +119,15 @@ the options your spell requires by adding a space and quotes `' --option'`.
 
 ## Development
 
-**📝 TODO:** Installation script
+### TODO before v3.0.0 release
 
-**📝 TODO:** coverage.py
-
-**📝 TODO:** Testing
+* Installation script
+* Release pipeline
+* coverage.py
+* Testing
 
 ## Credits
 
 * I used [MartinHeinz/python-project-blueprint](https://github.com/MartinHeinz/python-project-blueprint) as a basic
-  guide for creating a proper Python project. Thank you, Martin!
+  guide for making a Python project
 * Developed with the support of my employer, [Nitor](https://nitor.com/)
