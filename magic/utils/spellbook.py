@@ -1,5 +1,5 @@
 from fastjsonschema import validate
-from os import path
+import os
 import json
 
 from magic.config import SPELLBOOK_PATH, SPELLBOOK_SCHEMA_PATH, SPELLBOOK_INDENTATION
@@ -33,7 +33,7 @@ def __validate_spellbook(spellbook_contents):
 
 
 def __open_spellbook():
-    if not path.exists(SPELLBOOK_PATH):
+    if not os.path.exists(SPELLBOOK_PATH):
         __create_spellbook()
     with open(SPELLBOOK_PATH, 'r') as file:
         spellbook = json.load(file)

@@ -4,6 +4,7 @@ Usage:
     magic [-s | --show] <spell> [<args>...]
     magic [-d | --delete] <spell>
     magic -a | --add
+    magic -e | --edit
     magic -l | --list
     magic -h | --help
     magic -v | --version
@@ -12,16 +13,18 @@ Options:
     -s --show       show spell details
     -d --delete     delete spell from spellbook
     -a --add        add spell to spellbook
+    -e --edit       edit spellbook
     -l --list       list spells in spellbook
-    -h --help       show this
+    -h --help       show help
     -v --version    show version"""
-
+import subprocess
 from datetime import datetime, timedelta
 from docopt import docopt
 from sys import exit
 
 from magic.add import add_spell
 from magic.cast import cast_spell
+from magic.config import SPELLBOOK_EDITOR, SPELLBOOK_PATH
 from magic.delete import delete_spell
 from magic.show import show_spell
 from magic.list import list_spells
@@ -38,6 +41,7 @@ def main():
     show_arg = arguments["--show"]
     delete_arg = arguments["--delete"]
     add_arg = arguments["--add"]
+    edit_arg = arguments["--edit"]
     list_arg = arguments["--list"]
     magic_word = arguments["<spell>"]
     spell_args = arguments["<args>"]
@@ -53,6 +57,11 @@ def main():
 
         if add_arg is True:
             add_spell()
+            exit()
+
+        if edit_arg is True:
+            # TODO: custom editor with validation
+            subprocess.call([SPELLBOOK_EDITOR, SPELLBOOK_PATH])
             exit()
 
         if list_arg is True:
