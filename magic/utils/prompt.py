@@ -1,3 +1,5 @@
+import sys
+
 from magic.utils.display import Colors, clear_last_line, in_color
 
 
@@ -27,7 +29,10 @@ def prompt_input(validate, default):
 
     response = None
     while response is None:
-        response = input(input_message)
+        try:
+            response = input(input_message)
+        except KeyboardInterrupt:
+            sys.exit()
         if default is not None:
             if response == "":
                 response = default
