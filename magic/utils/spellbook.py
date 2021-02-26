@@ -52,10 +52,25 @@ def get_spells():
     return spells
 
 
-def write_spell(spell):
+def write(spell):
     with open(SPELLBOOK_PATH, 'r+') as file:
         spellbook = json.load(file)  # spells are already validated in add_spell()
         spellbook.append(spell)
+        file.seek(0)
+        json.dump(spellbook, file, indent=SPELLBOOK_INDENTATION)
+        file.truncate()
+
+
+def delete(magic_word):
+    with open(SPELLBOOK_PATH, 'r+') as file:
+        def magic_word_filter(spell):
+            if magic_word in spell['magicWords']:
+                return False
+            else:
+                return True
+
+        spellbook = json.load(file)  # spell validity does not matter here
+        spellbook = list(filter(magic_word_filter, spellbook))
         file.seek(0)
         json.dump(spellbook, file, indent=SPELLBOOK_INDENTATION)
         file.truncate()

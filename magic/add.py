@@ -2,7 +2,7 @@ import re
 
 from magic.utils.display import Colors, in_color
 from magic.utils.prompt import create_prompt
-from magic.utils.spellbook import write_spell
+from magic.utils.spellbook import write
 from magic.utils.validate import is_y_or_n, is_not_empty, magic_word_validator
 
 color = Colors.CYAN
@@ -61,4 +61,4 @@ def add_spell():
         "showSuccessMessage": show_success_message
     }
 
-    write_spell(spell)
+    write(spell)

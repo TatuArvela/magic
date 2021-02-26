@@ -2,6 +2,7 @@
 
 Usage:
     magic [-s | --show] <spell> [<args>...]
+    magic [-d | --delete] <spell>
     magic -a | --add
     magic -l | --list
     magic -h | --help
@@ -9,6 +10,7 @@ Usage:
 
 Options:
     -s --show       show spell details
+    -d --delete     delete spell from spellbook
     -a --add        add spell to spellbook
     -l --list       list spells in spellbook
     -h --help       show this
@@ -20,6 +22,7 @@ from sys import exit
 
 from magic.add import add_spell
 from magic.cast import cast_spell
+from magic.delete import delete_spell
 from magic.show import show_spell
 from magic.list import list_spells
 from magic._version import __version__
@@ -33,34 +36,31 @@ def main():
     arguments = docopt(DOC_STRING, version=VERSION_STRING)
 
     show_arg = arguments["--show"]
+    delete_arg = arguments["--delete"]
     add_arg = arguments["--add"]
     list_arg = arguments["--list"]
-    spell = arguments["<spell>"]
+    magic_word = arguments["<spell>"]
     spell_args = arguments["<args>"]
 
-    if show_arg is True:
-        if spell:
-            try:
-                show_spell(spell=spell, spell_args=spell_args)
-            except Exception as error:
-                print_error(error)
-        else:
-            # Invalid usage
-            print(__doc__)
-        exit()
+    try:
+        if show_arg is True:
+            show_spell(magic_word=magic_word, spell_args=spell_args)
+            exit()
 
-    if add_arg is True:
-        try:
+        if delete_arg is True:
+            delete_spell(magic_word=magic_word)
+            exit()
+
+        if add_arg is True:
             add_spell()
-        except Exception as error:
-            print_error(error)
-        exit()
+            exit()
 
-    if list_arg is True:
-        try:
+        if list_arg is True:
             list_spells()
-        except Exception as error:
-            print_error(error)
+            exit()
+
+    except Exception as error:
+        print_error(error)
         exit()
 
     handle_spell_cast(arguments)

@@ -12,7 +12,6 @@
   e.g. `magic say abra kadabra`
 * The execution time of spells is measured by default
 * **📝 TODO:** Spells can be edited
-* **📝 TODO:** Spells can be removed
 
 ## Usage
 
