@@ -1,4 +1,4 @@
-# Magic
+![Magic](./Magic.png "Magic")
 
 **✨ Magic** is a tool for wrapping repeated command line tasks into simple scripts.
 
@@ -112,6 +112,7 @@ the options your spell requires by adding a space and quotes `' --option'`.
 
 ### TODO before v3.0.0 release
 
+* Calculate and handle parameters better, `magic cat 1 2 3` fails
 * Release pipeline
 * coverage.py
 * Testing
