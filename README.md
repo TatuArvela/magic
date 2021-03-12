@@ -145,14 +145,17 @@ python -m lint
 
 #### For 3.0.0 release
 
-* Building a package
-* Releasing it as `tatuarvela-magic`
-* CI pipeline
+* Use GitHub Actions for building and releasing
+  * https://github.com/abatilo/actions-poetry
+* Release as `tatuarvela-magic` to PyPI and Test PyPI
 
 #### For 3.X.X releases
 
-* Migrate to `click` from `docopt`
-* Add pytest, coverage.py
+* Add `pytest`, `coverage.py`
+* Add `bandit`
+* Replace `docopt` with `click`
+  * https://click.palletsprojects.com/en/7.x/
+* Create a logo
 
 ## Credits
 
