@@ -117,12 +117,10 @@ quotes `' --option'`.
    poetry run magic
    ```
 
-4. For global access, add `Magic/bin` to `PATH` in your `.bashrc`, `.zshrc` or
-   other configuration file
+4. Register `magic` to your `PATH`
 
     ```bash
-    # Magic (development version)
-    export PATH="$PATH:<CLONING_DIRECTORY_HERE>/Magic/bin"
+    poetry run magic-path
     ```
 
 When developing the tool, you should use the `magic` module directly
