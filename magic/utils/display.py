@@ -1,6 +1,18 @@
 from sys import stdout
 
 
+class Emoji:
+    # Emoji spacing in terminal is unpredictable
+    # These extra spaces appear to fix issues
+    FAILURE = "\u274c\ufeff"
+    FIRE = "\U0001f525"
+    SPARKLE = "\u2728\ufeff"
+    SUCCESS = "\u2705\ufeff"
+    TIMER = "\u23f1\u0020"
+    TRASH = "\U0001f5d1\u0020"
+    WIZARD = "\U0001f9d9"
+
+
 class Colors:
     BLACK = "\u001b[30m"
     RED = "\u001b[31m"
@@ -18,7 +30,7 @@ def in_color(text, color):
 
 
 def print_error(error):
-    print(f"""{Colors.RED}🔥 {error}{Colors.RESET}""")
+    print(f"""{Colors.RED}{Emoji.FIRE} {error}{Colors.RESET}""")
 
 
 def clear_last_line():
