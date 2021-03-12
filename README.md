@@ -3,7 +3,7 @@
 **✨ Magic** is a tool for wrapping repeated command line tasks into simple scripts.
 
 * A set of commands is saved as a **spell**
-* Spells are written into the **spellbook** file (`spellbook.json`)
+* Spells are written into the **spellbook** file (`~/.spellbook.json`)
 * Each spell can be called with one or several **magic words**  
   e.g. `magic build-app` and `magic ba`
 * Spells can have **arguments** passed to them  
@@ -112,9 +112,17 @@ the options your spell requires by adding a space and quotes `' --option'`.
 
 ### TODO before v3.0.0 release
 
-* Release pipeline
+#### Release tools
+
+* Execute linters as pre-commit hook
+* Package metadata and structure
+* Pipeline that pops out a release artifact (a binary that requires just Python 3)
+* CI pipeline that triggers this on a new tagged release
+
+#### Testing
+
 * coverage.py
-* Testing
+* pytest
 
 ## Credits
 
