@@ -112,7 +112,6 @@ the options your spell requires by adding a space and quotes `' --option'`.
 
 ### TODO before v3.0.0 release
 
-* Calculate and handle parameters better, `magic cat 1 2 3` fails
 * Release pipeline
 * coverage.py
 * Testing

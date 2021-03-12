@@ -28,7 +28,7 @@ def __count_arguments(description, commands):
 
     if len(args) == 0:
         return 0
-    return args[-1]
+    return args[-1] + 1
 
 
 def add_spell():
