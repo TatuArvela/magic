@@ -1,6 +1,0 @@
-black
-docopt
-fastjsonschema
-flake8
-isort
-pytest

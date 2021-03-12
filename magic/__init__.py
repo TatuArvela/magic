@@ -19,11 +19,11 @@ Options:
     -v --version    show version"""
 import subprocess
 from datetime import datetime, timedelta
+from importlib import metadata
 from sys import exit
 
 from docopt import docopt
 
-from magic._version import __version__
 from magic.add import add_spell
 from magic.cast import cast_spell
 from magic.config import SPELLBOOK_EDITOR, SPELLBOOK_PATH
@@ -32,6 +32,7 @@ from magic.list import list_spells
 from magic.show import show_spell
 from magic.utils.display import Colors, in_color, print_error
 
+__version__ = metadata.version("magic")
 VERSION_STRING = (
     f'✨ {in_color("Magic", Colors.BLUE)} v{__version__}, © 2021 Tatu Arvela'
 )

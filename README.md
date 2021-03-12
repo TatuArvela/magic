@@ -15,7 +15,7 @@
 Installation is currently manual. Follow the instructions below.
 
 * Supported operating systems: macOS (untested on Linux and Windows)
-* Requirements: Python 3, Make
+* Requirements: Python 3, Poetry
 
 1. Clone the Git repository somewhere and navigate to it on the command line
    ```
@@ -25,7 +25,7 @@ Installation is currently manual. Follow the instructions below.
 
 2. Create a virtual env and install requirements
    ```
-   make install
+   poetry install
    ```
 
 3. Verify that the application works
@@ -114,8 +114,11 @@ the options your spell requires by adding a space and quotes `' --option'`.
 
 #### Release tools
 
-* Execute linters as pre-commit hook
 * Package metadata and structure
+      * build
+      * publish
+      * test
+      * clean
 * Pipeline that pops out a release artifact (a binary that requires just Python 3)
 * CI pipeline that triggers this on a new tagged release
 
@@ -126,6 +129,4 @@ the options your spell requires by adding a space and quotes `' --option'`.
 
 ## Credits
 
-* I used [MartinHeinz/python-project-blueprint](https://github.com/MartinHeinz/python-project-blueprint) as a starting
-  point for making a proper Python project
 * Developed with the support of my employer, [Nitor](https://nitor.com/)

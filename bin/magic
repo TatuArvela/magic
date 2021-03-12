@@ -2,5 +2,7 @@
 
 # Parent directory of this file
 MAGICPATH="$(dirname "$(dirname "$0")")"
-source "${MAGICPATH}/venv/bin/activate"
+
+source "${MAGICPATH}/.venv/bin/activate"
+
 PYTHONPATH=$PYTHONPATH:$MAGICPATH python3 -m magic "$@"
