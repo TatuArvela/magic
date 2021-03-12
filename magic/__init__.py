@@ -32,7 +32,7 @@ from magic.list import list_spells
 from magic.show import show_spell
 from magic.utils.display import Colors, in_color, print_error
 
-__version__ = metadata.version("magic")
+__version__ = metadata.version("tatuarvela-magic")
 VERSION_STRING = (
     f'✨ {in_color("Magic", Colors.BLUE)} v{__version__}, © 2021 Tatu Arvela'
 )

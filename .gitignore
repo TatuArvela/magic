@@ -1,7 +1,10 @@
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
 .venv/
+dist/
 
+# Development tools
 .vscode
 .idea

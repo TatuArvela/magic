@@ -11,3 +11,7 @@ def lint():
     subprocess.run(["black", "."])
     print(f"{BLUE}# Running flake8{NO_COLOR}")
     subprocess.run(["flake8", "."])
+
+
+if __name__ == "__main__":
+    lint()

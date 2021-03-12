@@ -1,7 +1,5 @@
 # Magic
 
-![Magic](./Magic.png "Magic")
-
 **✨ Magic** is a tool for wrapping repeated command line tasks into simple
 scripts.
 
@@ -15,7 +13,7 @@ scripts.
 
 ## Installation
 
-Magic is still in development and has not yet been officially released.  After
+Magic is still in development and has not yet been officially released. After
 the release, there will be a proper way to install it.
 
 Until then, please refer to
@@ -107,44 +105,55 @@ quotes `' --option'`.
    cd Magic
    ```
 
-2. Create a virtual env and install requirements
+2. Install `magic` and its dependencies to a virtual env
 
    ```bash
    poetry install
    ```
 
-3. Verify that the application works
+3. Verify that `magic` works
 
    ```bash
-   python3 -m magic
+   poetry run magic
    ```
 
-4. Add `Magic/bin` to your PATH in your `.bashrc`, `.zshrc` or other
-   configuration file
+4. For global access, add `Magic/bin` to `PATH` in your `.bashrc`, `.zshrc` or
+   other configuration file
 
     ```bash
-    # Magic
+    # Magic (development version)
     export PATH="$PATH:<CLONING_DIRECTORY_HERE>/Magic/bin"
     ```
 
-### TODO before v3.0.0 release
+When developing the tool, you should use the `magic` module directly
+with `python -m magic`.
 
-#### Release tools
+After successful changes, you need to run `poetry install` again to update the
+version in your `PATH`.
 
-* Package metadata and structure
-  * build
-  * publish
-  * test
-  * clean
-* Pipeline that pops out a release artifact (a binary that requires just Python
-  3)
-* CI pipeline that triggers this on a new tagged release
+### Code quality tools
 
-#### Testing
+Magic uses `isort`, `black` and `flake8` as its code quality tools. They are
+executed automatically with `pre-commit` and can also be executed with the
+included lint script:
 
-* coverage.py
-* pytest
+```bash
+python -m lint
+```
+
+### TODO
+
+#### For 3.0.0 release
+
+* Building a package
+* Releasing it as `tatuarvela-magic`
+* CI pipeline
+
+#### For 3.X.X releases
+
+* Migrate to `click` from `docopt`
+* Add pytest, coverage.py
 
 ## Credits
 
-* Developed with the support of my employer, [Nitor](https://nitor.com/)
+Magic is developed with the support of my employer, [Nitor](https://nitor.com/)

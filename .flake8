@@ -1,6 +1,7 @@
 [flake8]
 exclude =
     .git,
-    .venv
+    .venv,
+    dist
 max-line-length = 120
 max-complexity = 10
