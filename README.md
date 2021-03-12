@@ -1,6 +1,9 @@
+# Magic
+
 ![Magic](./Magic.png "Magic")
 
-**✨ Magic** is a tool for wrapping repeated command line tasks into simple scripts.
+**✨ Magic** is a tool for wrapping repeated command line tasks into simple
+scripts.
 
 * A set of commands is saved as a **spell**
 * Spells are written into the **spellbook** file (`~/.spellbook.json`)
@@ -18,30 +21,35 @@ Installation is currently manual. Follow the instructions below.
 * Requirements: Python 3, Poetry
 
 1. Clone the Git repository somewhere and navigate to it on the command line
-   ```
+
+   ```bash
    git clone https://github.com/TatuArvela/Magic.git
    cd Magic
    ```
 
 2. Create a virtual env and install requirements
-   ```
+
+   ```bash
    poetry install
    ```
 
 3. Verify that the application works
-   ```
+
+   ```bash
    python3 -m magic
    ```
 
-4. Add `Magic/bin` to your PATH in your `.bashrc`, `.zshrc` or other configuration file
-    ```
+4. Add `Magic/bin` to your PATH in your `.bashrc`, `.zshrc` or other
+   configuration file
+
+    ```bash
     # Magic
     export PATH="$PATH:<CLONING_DIRECTORY_HERE>/Magic/bin"
     ```
 
 ## Usage
 
-```
+```console
 $ magic --help
 ✨ Magic v3.0.0, © 2021 Tatu Arvela
 A tool for simplifying repeated command line tasks
@@ -65,16 +73,17 @@ Options:
     -v --version    show version
 ```
 
-Editing a spell is currently done with an external editor (**Visual Studio Code** by default).
+Editing a spell is currently done with an external editor (**Visual Studio
+Code** by default).
 
 ### Spell arguments
 
-Spells can have an array of arguments, which are populated according to their index. Excessive usage is considered an
-anti-pattern.
+Spells can have an array of arguments, which are populated according to their
+index. Excessive usage is considered an anti-pattern.
 
 Example:
 
-```
+```json
 {
   "description": "Test echo spell with arguments '$a0' and '$a1'",
   "magicWords": [
@@ -86,10 +95,10 @@ Example:
     "echo $a1"
   ],
   "argumentCount": 2
-},
+}
 ```
 
-```
+```console
 $ magic test cat dog
 ✨  Test echo spell with arguments 'cat' and 'dog'
 cat
@@ -99,14 +108,16 @@ dog
 
 #### Advanced usage: Empty arguments
 
-Argument are handled as an array, so arguments can not be empty. As a work-around they may be substituted with an empty
-string: `''`.
+Argument are handled as an array, so arguments can not be empty. As a
+work-around they may be substituted with an empty string: `''`.
 
 #### Advanced usage: Spell options
 
-It is possible to provide options (`--option`) as arguments to spells. This is not intended usage, but may be useful to
-some. This requires a little work-around, as `docopt` stops the execution if it detects unknown options. You can provide
-the options your spell requires by adding a space and quotes `' --option'`.
+It is possible to provide options (`--option`) as arguments to spells. This is
+not intended usage, but may be useful to some. This requires a little
+work-around, as `docopt` stops the execution if it detects unknown options. You
+can provide the options your spell requires by adding a space and
+quotes `' --option'`.
 
 ## Development
 
@@ -115,11 +126,12 @@ the options your spell requires by adding a space and quotes `' --option'`.
 #### Release tools
 
 * Package metadata and structure
-      * build
-      * publish
-      * test
-      * clean
-* Pipeline that pops out a release artifact (a binary that requires just Python 3)
+  * build
+  * publish
+  * test
+  * clean
+* Pipeline that pops out a release artifact (a binary that requires just Python
+  3)
 * CI pipeline that triggers this on a new tagged release
 
 #### Testing
