@@ -15,37 +15,11 @@ scripts.
 
 ## Installation
 
-Installation is currently manual. Follow the instructions below.
+Magic is still in development and has not yet been officially released.  After
+the release, there will be a proper way to install it.
 
-* Supported operating systems: macOS (untested on Linux and Windows)
-* Requirements: Python 3, Poetry
-
-1. Clone the Git repository somewhere and navigate to it on the command line
-
-   ```bash
-   git clone https://github.com/TatuArvela/Magic.git
-   cd Magic
-   ```
-
-2. Create a virtual env and install requirements
-
-   ```bash
-   poetry install
-   ```
-
-3. Verify that the application works
-
-   ```bash
-   python3 -m magic
-   ```
-
-4. Add `Magic/bin` to your PATH in your `.bashrc`, `.zshrc` or other
-   configuration file
-
-    ```bash
-    # Magic
-    export PATH="$PATH:<CLONING_DIRECTORY_HERE>/Magic/bin"
-    ```
+Until then, please refer to
+[Development installation](#development-installation) for instructions.
 
 ## Usage
 
@@ -120,6 +94,38 @@ can provide the options your spell requires by adding a space and
 quotes `' --option'`.
 
 ## Development
+
+### Development installation
+
+* Supported operating systems: macOS (untested on Linux)
+* Requirements: Python 3, Poetry
+
+1. Clone the Git repository somewhere and navigate to it on the command line
+
+   ```bash
+   git clone https://github.com/TatuArvela/Magic.git
+   cd Magic
+   ```
+
+2. Create a virtual env and install requirements
+
+   ```bash
+   poetry install
+   ```
+
+3. Verify that the application works
+
+   ```bash
+   python3 -m magic
+   ```
+
+4. Add `Magic/bin` to your PATH in your `.bashrc`, `.zshrc` or other
+   configuration file
+
+    ```bash
+    # Magic
+    export PATH="$PATH:<CLONING_DIRECTORY_HERE>/Magic/bin"
+    ```
 
 ### TODO before v3.0.0 release
 
