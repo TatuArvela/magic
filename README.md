@@ -1,6 +1,8 @@
 # Magic
 
-**✨ Magic** is a tool for wrapping repeated command line tasks into simple
+![Magic icon](./Magic%20icon.png?raw=true "Magic icon")
+
+**Magic** is a tool for wrapping repeated command line tasks into simple
 scripts.
 
 * A set of commands is saved as a **spell**
@@ -155,7 +157,6 @@ python -m lint
 * Add `pytest`, `coverage.py`
 * Replace `docopt` with `click`
   * https://click.palletsprojects.com/en/7.x/
-* Create a logo
 
 ## Credits
 
