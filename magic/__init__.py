@@ -17,7 +17,7 @@ Options:
     -l --list       list spells in spellbook
     -h --help       show help
     -v --version    show version"""
-import subprocess
+import subprocess  # nosec
 from datetime import datetime, timedelta
 from importlib import metadata
 from sys import exit
@@ -63,7 +63,7 @@ def main():
 
         if edit_arg is True:
             # TODO: custom editor with validation
-            subprocess.call([SPELLBOOK_EDITOR, SPELLBOOK_PATH])
+            subprocess.call([SPELLBOOK_EDITOR, SPELLBOOK_PATH])  # nosec
             exit()
 
         if list_arg is True:

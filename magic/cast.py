@@ -1,4 +1,4 @@
-import subprocess
+import subprocess  # nosec
 from string import Template
 
 from magic.utils.display import Colors, Emoji, in_color, print_error
@@ -47,7 +47,7 @@ def cast_spell(arguments):
                 parsed_command = __parse_command(command, spell_args)
                 executable_commands = f"{executable_commands}\n{parsed_command}"
 
-            process = subprocess.Popen(executable_commands, shell=True)
+            process = subprocess.Popen(executable_commands, shell=True)  # nosec
             exit_code = process.wait()
 
             if exit_code != 0:
