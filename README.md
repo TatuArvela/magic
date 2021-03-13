@@ -13,6 +13,9 @@ scripts.
 
 ## Installation
 
+Magic is intended for systems using Bash or Zsh, including macOS and common Linux
+distributions. Windows is not supported.
+
 Magic is still in development and has not yet been officially released. After
 the release, there will be a proper way to install it.
 
@@ -72,10 +75,10 @@ Example:
 
 ```console
 $ magic test cat dog
-✨  Test echo spell with arguments 'cat' and 'dog'
+✨ Test echo spell with arguments 'cat' and 'dog'
 cat
 dog
-✅ 17:00:00 Success ⏱ 0:00:00
+✅ 23:46:43 | ⏱ 0:00:00
 ```
 
 #### Advanced usage: Empty arguments
@@ -150,7 +153,6 @@ python -m lint
 #### For 3.X.X releases
 
 * Add `pytest`, `coverage.py`
-* Add `bandit`
 * Replace `docopt` with `click`
   * https://click.palletsprojects.com/en/7.x/
 * Create a logo
