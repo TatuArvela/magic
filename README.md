@@ -1,8 +1,14 @@
-# Magic
+# ![Magic icon](./Magic%20icon.png?raw=true "Magic icon") Magic
 
-![Magic icon](./Magic%20icon.png?raw=true "Magic icon")
+[![Repository](https://img.shields.io/badge/repository-gray.svg?logo=github)](https://github.com/TatuArvela/Magic)
+[![GitHub issues](https://img.shields.io/github/issues/TatuArvela/Magic)](https://github.com/TatuArvela/Magic/issues)
+![GitHub build](https://img.shields.io/github/workflow/status/TatuArvela/Magic/build)
+![PyPI](https://img.shields.io/pypi/v/tatuarvela-magic)
+![Platforms](https://img.shields.io/badge/platforms-macos%20|%20linux-lightgrey.svg)
+[![License](https://img.shields.io/github/license/TatuArvela/Magic)](https://github.com/TatuArvela/Magic/blob/master/LICENSE)
+[![Supported by Nitor](https://img.shields.io/badge/supported%20by-Nitor-informational.svg)](https://nitor.com/)
 
-**Magic** is a tool for wrapping repeated command line tasks into simple
+Magic is a tool for wrapping repeated command line tasks into simple
 scripts.
 
 * A set of commands is saved as a **spell**
@@ -157,7 +163,3 @@ python -m lint
 * Add `pytest`, `coverage.py`
 * Replace `docopt` with `click`
   * https://click.palletsprojects.com/en/7.x/
-
-## Credits
-
-Magic is developed with the support of my employer, [Nitor](https://nitor.com/)
