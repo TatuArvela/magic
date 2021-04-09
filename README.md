@@ -154,9 +154,11 @@ python -m lint
 
 #### For 3.0.0 release
 
-* Use GitHub Actions for building and releasing
-  * https://github.com/abatilo/actions-poetry
-* Release as `tatuarvela-magic` to PyPI and Test PyPI
+* Add review workflow
+* Add release workflow
+* Release `tatuarvela-magic` to Test PyPI
+* Tag release 3.0.0
+* Release as `tatuarvela-magic` to PyPI
 
 #### For 3.X.X releases
 
