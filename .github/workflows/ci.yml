@@ -28,4 +28,6 @@ jobs:
           pip install poetry
           poetry install
       - name: Lint
-        run: python3 -m lint
+        run: |
+          poetry shell
+          python3 -m lint
