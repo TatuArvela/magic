@@ -155,9 +155,11 @@ python -m lint
 #### For 3.0.0 release
 
 * Add release workflow
-* Release `tatuarvela-magic` to Test PyPI
+  * Release `tatuarvela-magic` to Test PyPI
 * Tag release 3.0.0
-* Release as `tatuarvela-magic` to PyPI
+* Verify result
+* Update release workflow
+  * Release as `tatuarvela-magic` to PyPI
 
 #### For 3.X.X releases
 
