@@ -2,7 +2,7 @@
 
 [![Repository](https://img.shields.io/badge/repository-gray.svg?logo=github)](https://github.com/TatuArvela/Magic)
 [![GitHub issues](https://img.shields.io/github/issues/TatuArvela/Magic)](https://github.com/TatuArvela/Magic/issues)
-![GitHub build](https://img.shields.io/github/workflow/status/TatuArvela/Magic/build)
+[![GitHub CI](https://img.shields.io/github/workflow/status/TatuArvela/Magic/ci)](https://github.com/TatuArvela/Magic/actions/workflows/ci.yml)
 ![PyPI](https://img.shields.io/pypi/v/tatuarvela-magic)
 ![Platforms](https://img.shields.io/badge/platforms-macos%20|%20linux-lightgrey.svg)
 [![License](https://img.shields.io/github/license/TatuArvela/Magic)](https://github.com/TatuArvela/Magic/blob/master/LICENSE)
@@ -154,7 +154,6 @@ python -m lint
 
 #### For 3.0.0 release
 
-* Add review workflow
 * Add release workflow
 * Release `tatuarvela-magic` to Test PyPI
 * Tag release 3.0.0

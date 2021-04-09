@@ -1,7 +1,7 @@
-name: Review
+name: Continuous Integration
 
 on:
-  pull_request:
+  push:
     branches: [ $default-branch ]
 
 jobs:
