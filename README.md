@@ -4,7 +4,6 @@
 [![GitHub issues](https://img.shields.io/github/issues/TatuArvela/Magic)](https://github.com/TatuArvela/Magic/issues)
 [![GitHub CI](https://github.com/TatuArvela/Magic/actions/workflows/ci.yml/badge.svg?event=push)](https://github.com/TatuArvela/Magic/actions/workflows/ci.yml)
 ![PyPI](https://img.shields.io/pypi/v/tatuarvela-magic)
-![Platforms](https://img.shields.io/badge/platforms-macos%20|%20linux-lightgrey.svg)
 [![License](https://img.shields.io/github/license/TatuArvela/Magic)](https://github.com/TatuArvela/Magic/blob/master/LICENSE)
 [![Supported by Nitor](https://img.shields.io/badge/supported%20by-Nitor-informational.svg)](https://nitor.com/)
 
