@@ -3,7 +3,7 @@
 [![Repository](https://img.shields.io/badge/repository-gray.svg?logo=github)](https://github.com/TatuArvela/Magic)
 [![GitHub issues](https://img.shields.io/github/issues/TatuArvela/Magic)](https://github.com/TatuArvela/Magic/issues)
 [![Pipeline status](https://github.com/TatuArvela/Magic/actions/workflows/verify.yml/badge.svg?event=push)](https://github.com/TatuArvela/Magic/actions/workflows/verify.yml)
-![PyPI](https://img.shields.io/pypi/v/tatuarvela-magic)
+[![PyPI](https://img.shields.io/pypi/v/tatuarvela-magic)](https://pypi.org/project/tatuarvela-magic/)
 [![License](https://img.shields.io/github/license/TatuArvela/Magic)](https://github.com/TatuArvela/Magic/blob/master/LICENSE)
 [![Created at Nitor](https://img.shields.io/badge/created%20at-Nitor-informational.svg)](https://nitor.com/)
 
