@@ -1,5 +1,3 @@
-name: CI
-
 on:
   push:
     branches:
@@ -10,24 +8,24 @@ on:
 
 jobs:
   review:
-    name: Review application on ${{ matrix.os }} / python-${{ matrix.python-version }}
+    name: Verify Magic on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest]
-        python-version: [3.9]
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.9'
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install poetry
           poetry install
-      - name: Lint
+      - name: Run linters
+        if: startsWith(matrix.os, 'ubuntu') # Only needs to run once
         run: |
           source .venv/bin/activate
           python3 -m lint
