@@ -1,4 +1,4 @@
-# ![Magic icon](./Magic%20icon.png?raw=true "Magic icon") Magic
+# ![Magic icon](./icon.png?raw=true "Magic icon") Magic
 
 [![Repository](https://img.shields.io/badge/repository-gray.svg?logo=github)](https://github.com/TatuArvela/Magic)
 [![GitHub issues](https://img.shields.io/github/issues/TatuArvela/Magic)](https://github.com/TatuArvela/Magic/issues)
