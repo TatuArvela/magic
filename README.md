@@ -68,10 +68,10 @@ Example:
 
 ```json
 {
-  "description": "Test echo spell with arguments '$a0' and '$a1'",
+  "description": "Example echo spell with arguments '$a0' and '$a1'",
   "magicWords": [
-    "t",
-    "test"
+    "e",
+    "example"
   ],
   "commands": [
     "echo $a0",
@@ -82,8 +82,8 @@ Example:
 ```
 
 ```console
-$ magic test cat dog
-✨ Test echo spell with arguments 'cat' and 'dog'
+$ magic example cat dog
+✨ Example echo spell with arguments 'cat' and 'dog'
 cat
 dog
 ✅ 23:46:43 | ⏱ 0:00:00

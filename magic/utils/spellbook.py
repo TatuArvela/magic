@@ -6,8 +6,8 @@ from fastjsonschema import validate
 from magic.config import SPELLBOOK_INDENTATION, SPELLBOOK_PATH, SPELLBOOK_SCHEMA_PATH
 
 default_spell = {
-    "description": "Test echo spell with arguments '$a0' and '$a1'",
-    "magicWords": ["t", "test"],
+    "description": "Example echo spell with arguments '$a0' and '$a1'",
+    "magicWords": ["e", "example"],
     "commands": ["echo $a0", "echo $a1"],
     "argumentCount": 2,
 }
