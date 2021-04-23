@@ -1,10 +1,9 @@
+# Adds the development version of Magic to your PATH
+
 import os
-from pathlib import Path
 
 SHELL = os.getenv("SHELL", "")
-SCRIPTS_DIR = Path(os.path.dirname(__file__))
-ROOT_DIR = SCRIPTS_DIR.parent.parent.absolute()
-BIN_DIR = os.path.join(ROOT_DIR, "bin")
+BIN_DIR = os.path.join(os.path.dirname(__file__), "bin")
 HOME = os.path.expanduser("~")
 
 
@@ -48,3 +47,7 @@ def write_path():
             print(f"Added to profile: {profile}")
         else:
             print(f"Already included in: {profile}")
+
+
+if __name__ == "__main__":
+    write_path()

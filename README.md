@@ -131,7 +131,7 @@ quotes `' --option'`.
 4. Register `magic` to your `PATH`
 
     ```bash
-    poetry run magic-path
+    python -m write_path
     ```
 
 When developing the tool, you should use the `magic` module directly
