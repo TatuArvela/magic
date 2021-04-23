@@ -21,6 +21,7 @@ jobs:
           pip install poetry
           poetry install
       - name: Build and publish to TestPyPI
+        if: ${{ secrets.TESTPYPI_ENABLED == 'true' }}
         env:
           TESTPYPI_TOKEN: ${{ secrets.TESTPYPI_TOKEN }}
         run: |
