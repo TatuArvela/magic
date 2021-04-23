@@ -1,16 +1,18 @@
 import subprocess
 
-from magic.utils.display import Colors, in_color
+
+def colorize(text):
+    return f"\u001b[34m{text}\u001b[0m"
 
 
 def lint():
-    print(in_color("# Running isort", Colors.BLUE))
+    print(colorize("# Running isort"))
     subprocess.run(["isort", "."])
-    print(in_color("# Running black", Colors.BLUE))
+    print(colorize("# Running black"))
     subprocess.run(["black", "."])
-    print(in_color("# Running flake8", Colors.BLUE))
+    print(colorize("# Running flake8"))
     subprocess.run(["flake8", "."])
-    print(in_color("# Running bandit", Colors.BLUE))
+    print(colorize("# Running bandit"))
     subprocess.run(["bandit", "-r", "--ini", ".bandit"])
 
 
