@@ -1,10 +1,10 @@
-from magic.utils.display import Colors, in_color
+from magic.utils.display import Color, in_color
 from magic.utils.spellbook import get
 
 
 def show_spell(magic_word, spell_args):
     spell = get(magic_word)
-    color = Colors.MAGENTA
+    color = Color.MAGENTA
 
     if not spell:
         raise Exception(f"Spell not found for magic word: {magic_word}")
@@ -19,7 +19,7 @@ def show_spell(magic_word, spell_args):
     if argument_count is None:
         print(f'{in_color("Arguments required:", color)} None')
     else:
-        arg_color = Colors.GREEN if len(spell_args) == argument_count else Colors.RED
+        arg_color = Color.GREEN if len(spell_args) == argument_count else Color.RED
         print(
             f'{in_color("Arguments required:", color)} {in_color(argument_count, arg_color)}'
         )

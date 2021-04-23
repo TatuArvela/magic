@@ -1,4 +1,4 @@
-from magic.utils.display import Colors, clear_last_line, in_color
+from magic.utils.display import Color, clear_last_line, in_color
 from magic.utils.spellbook import get_spells
 
 
@@ -38,7 +38,7 @@ def magic_word_validator():
                 print(
                     in_color(
                         f"A spell already exists with magic word: {word}\n",
-                        Colors.YELLOW,
+                        Color.YELLOW,
                     )
                 )
                 return False

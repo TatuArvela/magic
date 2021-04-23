@@ -1,7 +1,7 @@
 import subprocess  # nosec
 from string import Template
 
-from magic.utils.display import Colors, Emoji, in_color, print_error
+from magic.utils.display import EMOJI_SPARKLE, Color, in_color, print_error
 from magic.utils.spellbook import get
 
 
@@ -23,7 +23,7 @@ def __handle_message(spell, spell_args):
     if show_message is not False:
         if spell_args is not None:
             description = __substitute_args(description, spell_args)
-        print(f"{Emoji.SPARKLE} {in_color(description, Colors.CYAN)}")
+        print(f"{EMOJI_SPARKLE} {in_color(description, Color.CYAN)}")
 
 
 def __parse_command(command, spell_args):

@@ -1,9 +1,9 @@
 import sys
 
-from magic.utils.display import Colors, clear_last_line, in_color
+from magic.utils.display import Color, clear_last_line, in_color
 
 
-def create_prompt(color=Colors.WHITE, multiline=False):
+def create_prompt(color=Color.WHITE, multiline=False):
     def prompt(message, validate=None, default=None):
         print(in_color(message, color))
         if multiline:

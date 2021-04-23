@@ -1,11 +1,11 @@
 import re
 
-from magic.utils.display import Colors, Emoji, in_color
+from magic.utils.display import EMOJI_WIZARD, Color, in_color
 from magic.utils.prompt import create_prompt
 from magic.utils.spellbook import write
 from magic.utils.validate import is_not_empty, is_y_or_n, magic_word_validator
 
-color = Colors.CYAN
+color = Color.CYAN
 prompt = create_prompt(color)
 multiline_prompt = create_prompt(color, multiline=True)
 step_index = 0
@@ -32,7 +32,7 @@ def __count_arguments(description, commands):
 
 
 def add_spell():
-    print(in_color(f"{Emoji.WIZARD} Adding a new spell to your spellbook", color))
+    print(in_color(f"{EMOJI_WIZARD} Adding a new spell to your spellbook", color))
 
     description = prompt(
         f"{__step()}. Enter a description. You may use $a0, $a1, etc. to be shown as part of the message.",

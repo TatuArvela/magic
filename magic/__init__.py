@@ -30,10 +30,18 @@ from magic.config import SPELLBOOK_EDITOR, SPELLBOOK_PATH
 from magic.delete import delete_spell
 from magic.list import list_spells
 from magic.show import show_spell
-from magic.utils.display import Colors, Emoji, in_color, print_error
+from magic.utils.display import (
+    EMOJI_FAILURE,
+    EMOJI_SPARKLE,
+    EMOJI_SUCCESS,
+    EMOJI_TIMER,
+    Color,
+    in_color,
+    print_error,
+)
 
 __version__ = metadata.version("tatuarvela-magic")
-VERSION_STRING = f'{Emoji.SPARKLE} {in_color("Magic", Colors.BLUE)} v{__version__}, © 2021 Tatu Arvela'
+VERSION_STRING = f'{EMOJI_SPARKLE} {in_color("Magic", Color.BLUE)} v{__version__}, © 2021 Tatu Arvela'
 DOC_STRING = f"{VERSION_STRING}\n{__doc__}"
 
 
@@ -94,11 +102,11 @@ def print_result(start_time, success):
     elapsed_time = datetime.now() - start_time
     elapsed_time = elapsed_time - timedelta(microseconds=elapsed_time.microseconds)
 
-    result_emoji = Emoji.SUCCESS if success else Emoji.FAILURE
+    result_emoji = EMOJI_SUCCESS if success else EMOJI_FAILURE
     time_message = (
-        in_color(current_time, Colors.GREEN)
+        in_color(current_time, Color.GREEN)
         if success
-        else in_color(current_time, Colors.RED)
+        else in_color(current_time, Color.RED)
     )
 
-    print(f"{result_emoji} {time_message} | {Emoji.TIMER} {elapsed_time}")
+    print(f"{result_emoji} {time_message} | {EMOJI_TIMER} {elapsed_time}")
