@@ -29,7 +29,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 magic = "magic:main"
-magic-path = "path:path"
+magic-path = "magic.scripts:write_path"
 
 [tool.isort]
 profile = "black"

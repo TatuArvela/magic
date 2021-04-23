@@ -1,2 +1,2 @@
 [bandit]
-targets = magic,path.py
+targets = magic

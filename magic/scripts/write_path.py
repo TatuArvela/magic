@@ -1,7 +1,10 @@
 import os
+from pathlib import Path
 
 SHELL = os.getenv("SHELL", "")
-MAGIC_BIN = os.path.join(os.path.dirname(__file__), "bin")
+SCRIPTS_DIR = Path(os.path.dirname(__file__))
+ROOT_DIR = SCRIPTS_DIR.parent.parent.absolute()
+BIN_DIR = os.path.join(ROOT_DIR, "bin")
 HOME = os.path.expanduser("~")
 
 
@@ -20,12 +23,12 @@ def __get_unix_profiles():
 
 
 def __get_export_string():
-    export_string = f'export PATH="$PATH:{MAGIC_BIN}"'
+    export_string = f'export PATH="$PATH:{BIN_DIR}"'
 
     return export_string
 
 
-def path():
+def write_path():
     print("Adding magic to your PATH...")
     export_string = __get_export_string()
     magic_section = f"\n{export_string}\n"
@@ -43,3 +46,5 @@ def path():
             with open(profile, "a") as f:
                 f.write(str(magic_section))
             print(f"Added to profile: {profile}")
+        else:
+            print(f"Already included in: {profile}")
