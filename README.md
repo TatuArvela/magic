@@ -152,12 +152,6 @@ python -m lint
 
 ### TODO
 
-#### For 3.0.0 release
-
-* Update release workflow to use production PyPI
-* Tag release v3.0.0
-  * Release `tatuarvela-magic` to PyPI
-
 #### For 3.X.X releases
 
 * Add `pytest`, `coverage.py`

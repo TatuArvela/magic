@@ -31,3 +31,10 @@ jobs:
           poetry config pypi-token.testpypi $TESTPYPI_TOKEN
           poetry build
           poetry publish -r testpypi
+      - name: Build and publish to PyPI
+        if: ${{ env.PYPI_ENABLED == 'true' }}
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          echo "poetry build"
+          echo "poetry publish"
