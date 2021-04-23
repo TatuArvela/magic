@@ -5,7 +5,7 @@
 [![GitHub CI](https://github.com/TatuArvela/Magic/actions/workflows/ci.yml/badge.svg?event=push)](https://github.com/TatuArvela/Magic/actions/workflows/ci.yml)
 ![PyPI](https://img.shields.io/pypi/v/tatuarvela-magic)
 [![License](https://img.shields.io/github/license/TatuArvela/Magic)](https://github.com/TatuArvela/Magic/blob/master/LICENSE)
-[![Supported by Nitor](https://img.shields.io/badge/supported%20by-Nitor-informational.svg)](https://nitor.com/)
+[![Created at Nitor](https://img.shields.io/badge/created%20at-Nitor-informational.svg)](https://nitor.com/)
 
 Magic is a tool for wrapping repeated command line tasks into simple
 scripts.
