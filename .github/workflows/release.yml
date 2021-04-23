@@ -9,6 +9,8 @@ jobs:
   release:
     name: Release Magic ${{ github.ref }}
     runs-on: ubuntu-latest
+    env:
+      TESTPYPI_ENABLED: ${{ secrets.TESTPYPI_ENABLED == 'true' }}
     steps:
       - uses: actions/checkout@v1
       - name: Set up Python
@@ -21,7 +23,7 @@ jobs:
           pip install poetry
           poetry install
       - name: Build and publish to TestPyPI
-        if: ${{ secrets.TESTPYPI_ENABLED == 'true' }}
+        if: ${{ env.TESTPYPI_ENABLED == 'true' }}
         env:
           TESTPYPI_TOKEN: ${{ secrets.TESTPYPI_TOKEN }}
         run: |
