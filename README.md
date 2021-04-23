@@ -20,14 +20,15 @@ scripts.
 
 ## Installation
 
-Magic is intended for systems using Bash or Zsh, including macOS and common Linux
-distributions. Windows is not supported.
+Magic is designed for macOS and common Linux
+distributions using Bash or Zsh. Windows is not supported.
 
-Magic is still in development and has not yet been officially released. After
-the release, there will be a proper way to install it.
+Magic requires Python 3.9, and can be installed using pip:  
+```console
+python3 -m pip install tatuarvela-magic
+```
 
-Until then, please refer to
-[Development installation](#development-installation) for instructions.
+See also: [Development installation](#development-installation)
 
 ## Usage
 
@@ -153,7 +154,6 @@ python -m lint
 
 #### For 3.0.0 release
 
-* Verify result (install locally from TestPyPI)
 * Update release workflow to use production PyPI
 * Tag release v3.0.0
   * Release `tatuarvela-magic` to PyPI
