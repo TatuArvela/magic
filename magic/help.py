@@ -10,7 +10,7 @@ year = 2021
 author = "Tatu Arvela"
 
 version_text = (
-    f"{EMOJI_SPARKLE} {in_color(name, Color.BLUE)} v{version} (c) {year} {author}"
+    f"{EMOJI_SPARKLE} {in_color(name, Color.BLUE)} v{version} © {year} {author}"
 )
 
 

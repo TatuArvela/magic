@@ -35,7 +35,7 @@ See also: [Development installation](#development-installation)
 
 ```console
 $ magic
-✨ Magic v3.1.0 (c) 2021 Tatu Arvela
+✨ Magic v3.1.0 © 2021 Tatu Arvela
 A tool for simplifying repeated command line tasks
 
 Usage: magic [OPTIONS] COMMAND [ARGS]...
