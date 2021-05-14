@@ -1,6 +1,6 @@
 import sys
 
-from magic.utils.display import Color, clear_last_line, in_color
+from magic.shared.display import Color, clear_last_line, in_color
 
 
 def create_prompt(color=Color.WHITE, multiline=False):

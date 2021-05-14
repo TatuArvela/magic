@@ -1,8 +1,17 @@
 import subprocess  # nosec
+from datetime import datetime, timedelta
 from string import Template
 
-from magic.utils.display import EMOJI_SPARKLE, Color, in_color, print_error
-from magic.utils.spellbook import get
+from magic.shared.display import (
+    EMOJI_FAILURE,
+    EMOJI_SPARKLE,
+    EMOJI_SUCCESS,
+    EMOJI_TIMER,
+    Color,
+    in_color,
+    print_error,
+)
+from magic.shared.spellbook import get
 
 
 def __check_args(argument_count, spell_args):
@@ -32,14 +41,12 @@ def __parse_command(command, spell_args):
     return command
 
 
-def cast_spell(arguments):
+def __attempt_spell(magic_word, arguments):
     try:
-        magic_word = arguments["<spell>"]
-        spell_args = arguments["<args>"]
         spell = get(magic_word)
 
         if spell:
-            spell_args = __check_args(spell.get("argumentCount"), spell_args)
+            spell_args = __check_args(spell.get("argumentCount"), arguments)
             __handle_message(spell, spell_args)
 
             executable_commands = ""
@@ -60,3 +67,31 @@ def cast_spell(arguments):
     except Exception as error:
         print_error(error)
         raise RuntimeError
+
+
+def __print_result(start_time, success):
+    current_time = datetime.now().strftime("%H:%M:%S")
+    elapsed_time = datetime.now() - start_time
+    elapsed_time = elapsed_time - timedelta(microseconds=elapsed_time.microseconds)
+
+    result_emoji = EMOJI_SUCCESS if success else EMOJI_FAILURE
+    time_message = (
+        in_color(current_time, Color.GREEN)
+        if success
+        else in_color(current_time, Color.RED)
+    )
+
+    print(f"{result_emoji} {time_message} | {EMOJI_TIMER} {elapsed_time}")
+
+
+def cast_spell(magic_word, arguments):
+    start_time = datetime.now()
+
+    try:
+        # __attempt_spell returns true if showSuccessMessage is true
+        show_success_message = __attempt_spell(magic_word, arguments)
+        if show_success_message:
+            __print_result(start_time, success=True)
+
+    except RuntimeError:
+        __print_result(start_time, success=False)

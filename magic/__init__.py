@@ -1,112 +1,78 @@
-"""A tool for simplifying repeated command line tasks
-
-Usage:
-    magic [-s | --show] <spell> [<args>...]
-    magic [-d | --delete] <spell>
-    magic -a | --add
-    magic -e | --edit
-    magic -l | --list
-    magic -h | --help
-    magic -v | --version
-
-Options:
-    -s --show       show spell details
-    -d --delete     delete spell from spellbook
-    -a --add        add spell to spellbook
-    -e --edit       edit spellbook
-    -l --list       list spells in spellbook
-    -h --help       show help
-    -v --version    show version"""
-import subprocess  # nosec
-from datetime import datetime, timedelta
-from importlib import metadata
-from sys import exit
-
-from docopt import docopt
+import click
 
 from magic.add import add_spell
 from magic.cast import cast_spell
-from magic.config import SPELLBOOK_EDITOR, SPELLBOOK_PATH
 from magic.delete import delete_spell
-from magic.list import list_spells
+from magic.edit import edit_spellbook
+from magic.help import get_help
+from magic.shared.display import Color, in_color
+from magic.shared.spellbook import get_spells
 from magic.show import show_spell
-from magic.utils.display import (
-    EMOJI_FAILURE,
-    EMOJI_SPARKLE,
-    EMOJI_SUCCESS,
-    EMOJI_TIMER,
-    Color,
-    in_color,
-    print_error,
-)
+from magic.version import show_version
 
-__version__ = metadata.version("tatuarvela-magic")
-VERSION_STRING = f'{EMOJI_SPARKLE} {in_color("Magic", Color.BLUE)} v{__version__}, © 2021 Tatu Arvela'
-DOC_STRING = f"{VERSION_STRING}\n{__doc__}"
+CONTEXT_SETTINGS = dict(allow_extra_args=True)
 
 
+class MagicGroup(click.Group):
+    def get_help(self, ctx):
+        return get_help(self, ctx)
+
+
+@click.group(cls=MagicGroup, context_settings=CONTEXT_SETTINGS)
 def main():
-    arguments = docopt(DOC_STRING, version=VERSION_STRING)
-
-    show_arg = arguments["--show"]
-    delete_arg = arguments["--delete"]
-    add_arg = arguments["--add"]
-    edit_arg = arguments["--edit"]
-    list_arg = arguments["--list"]
-    magic_word = arguments["<spell>"]
-    spell_args = arguments["<args>"]
-
-    try:
-        if show_arg is True:
-            show_spell(magic_word=magic_word, spell_args=spell_args)
-            exit()
-
-        if delete_arg is True:
-            delete_spell(magic_word=magic_word)
-            exit()
-
-        if add_arg is True:
-            add_spell()
-            exit()
-
-        if edit_arg is True:
-            # TODO: custom editor with validation
-            subprocess.call([SPELLBOOK_EDITOR, SPELLBOOK_PATH])  # nosec
-            exit()
-
-        if list_arg is True:
-            list_spells()
-            exit()
-
-    except Exception as error:
-        print_error(error)
-        exit()
-
-    handle_spell_cast(arguments)
+    pass  # no-op
 
 
-def handle_spell_cast(arguments):
-    start_time = datetime.now()
-
-    try:
-        show_success_message = cast_spell(arguments)
-        if show_success_message:
-            print_result(start_time, success=True)
-
-    except RuntimeError:
-        print_result(start_time, success=False)
+@main.command(name="add")
+def __add():
+    """Add spell to spellbook"""
+    add_spell()
 
 
-def print_result(start_time, success):
-    current_time = datetime.now().strftime("%H:%M:%S")
-    elapsed_time = datetime.now() - start_time
-    elapsed_time = elapsed_time - timedelta(microseconds=elapsed_time.microseconds)
+@main.command(name="delete")
+@click.argument("magic_word", metavar="<magic_word>")
+def __delete(magic_word):
+    """Delete spell MAGIC_WORD from spellbook"""
+    delete_spell(magic_word=magic_word)
 
-    result_emoji = EMOJI_SUCCESS if success else EMOJI_FAILURE
-    time_message = (
-        in_color(current_time, Color.GREEN)
-        if success
-        else in_color(current_time, Color.RED)
-    )
 
-    print(f"{result_emoji} {time_message} | {EMOJI_TIMER} {elapsed_time}")
+@main.command(name="edit")
+def __edit():
+    """Edit spellbook"""
+    edit_spellbook()
+
+
+@main.command(
+    name="show",
+    context_settings=dict(allow_extra_args=True, ignore_unknown_options=True),
+)
+@click.argument("magic_word")
+@click.pass_context
+def __show(ctx, magic_word):
+    """Show details for spell MAGIC_WORD"""
+    show_spell(magic_word=magic_word, spell_args=ctx.args)
+
+
+@main.command(name="version")
+def __version():
+    """Show version"""
+    show_version()
+
+
+def create_func(magic_word):
+    @click.pass_context
+    def f(ctx):
+        cast_spell(magic_word=magic_word, arguments=ctx.args)
+        return True
+
+    return f
+
+
+spells = get_spells()
+
+for magic_word, spell in spells.items():
+    main.command(
+        name=magic_word,
+        help=in_color(spell.get("description"), Color.CYAN),
+        context_settings=dict(allow_extra_args=True, ignore_unknown_options=True),
+    )(create_func(magic_word))

@@ -31,7 +31,7 @@ def in_color(text, color: Color):
 
 
 def print_error(error):
-    print(f"""{in_color(f'{EMOJI_FIRE} {error}', Color.RED)}""")
+    print(f"""{in_color(f'{EMOJI_FIRE} Error: {error}', Color.RED)}""")
 
 
 def clear_last_line():

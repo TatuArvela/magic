@@ -3,7 +3,11 @@ import os
 
 from fastjsonschema import validate
 
-from magic.config import SPELLBOOK_INDENTATION, SPELLBOOK_PATH, SPELLBOOK_SCHEMA_PATH
+from magic.shared.config import (
+    SPELLBOOK_INDENTATION,
+    SPELLBOOK_PATH,
+    SPELLBOOK_SCHEMA_PATH,
+)
 
 default_spell = {
     "description": "Example echo spell with arguments '$a0' and '$a1'",

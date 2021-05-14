@@ -1,9 +1,9 @@
 import re
 
-from magic.utils.display import EMOJI_WIZARD, Color, in_color
-from magic.utils.prompt import create_prompt
-from magic.utils.spellbook import write
-from magic.utils.validate import is_not_empty, is_y_or_n, magic_word_validator
+from magic.shared.display import EMOJI_WIZARD, Color, in_color
+from magic.shared.prompt import create_prompt
+from magic.shared.spellbook import write
+from magic.shared.validate import is_not_empty, is_y_or_n, magic_word_validator
 
 color = Color.CYAN
 prompt = create_prompt(color)

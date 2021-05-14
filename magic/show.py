@@ -1,30 +1,29 @@
-from magic.utils.display import Color, in_color
-from magic.utils.spellbook import get
+from magic.shared.display import Color, in_color, print_error
+from magic.shared.spellbook import get
 
 
-def show_spell(magic_word, spell_args):
+def show_spell(magic_word, spell_args, skip_arguments_provided=False):
     spell = get(magic_word)
-    color = Color.MAGENTA
+    color = Color.CYAN
 
     if not spell:
-        raise Exception(f"Spell not found for magic word: {magic_word}")
+        return print_error(f"Spell not found for magic word '{magic_word}'")
 
     print(f'{in_color("Description:", color)} {spell["description"]}')
     print(f'{in_color("Magic words:", color)} {", ".join(spell["magicWords"])}')
     print(in_color("Commands:", color))
     for command in spell["commands"]:
-        print(f"{command}")
+        print(f"  {command}")
 
     argument_count = spell.get("argumentCount")
     if argument_count is None:
         print(f'{in_color("Arguments required:", color)} None')
     else:
-        arg_color = Color.GREEN if len(spell_args) == argument_count else Color.RED
-        print(
-            f'{in_color("Arguments required:", color)} {in_color(argument_count, arg_color)}'
-        )
+        print(f'{in_color("Arguments required:", color)} {argument_count}')
 
-    if len(spell_args) > 0:
-        print(in_color("Arguments provided:", color))
-        for idx, arg in enumerate(spell_args):
-            print(f"  {idx}: {arg}")
+    if skip_arguments_provided:
+        return
+
+    print(f'{in_color("Arguments provided:", color)} {len(spell_args)}')
+    for idx, arg in enumerate(spell_args):
+        print(f"  $a{idx}: {arg}")

@@ -33,27 +33,24 @@ See also: [Development installation](#development-installation)
 ## Usage
 
 ```console
-$ magic --help
-✨ Magic v3.0.0, © 2021 Tatu Arvela
+$ magic
+✨ Magic v3.1.0 (c) 2021 Tatu Arvela
 A tool for simplifying repeated command line tasks
 
 Usage:
-    magic [-s | --show] <spell> [<args>...]
-    magic [-d | --delete] <spell>
-    magic -a | --add
-    magic -e | --edit
-    magic -l | --list
-    magic -h | --help
-    magic -v | --version
+  magic <OPTIONS> COMMAND [ARGS]...
+  magic MAGIC_WORD [ARGS]...
 
 Options:
-    -s --show       show spell details
-    -d --delete     delete spell from spellbook
-    -a --add        add spell to spellbook
-    -e --edit       edit spellbook
-    -l --list       list spells in spellbook
-    -h --help       show help
-    -v --version    show version
+  --help  Show this message and exit.
+
+Commands:
+  add      Add spell to spellbook
+  delete   Delete spell MAGIC_WORD from spellbook
+  edit     Edit spellbook
+  lint     Run linters
+  show     Show details for spell MAGIC_WORD
+  version  Show version
 ```
 
 Editing a spell is currently done with an external editor (**Visual Studio
@@ -91,16 +88,7 @@ dog
 
 #### Advanced usage: Empty arguments
 
-Argument are handled as an array, so arguments can not be empty. As a
-work-around they may be substituted with an empty string: `''`.
-
-#### Advanced usage: Spell options
-
-It is possible to provide options (`--option`) as arguments to spells. This is
-not intended usage, but may be useful to some. This requires a little
-work-around, as `docopt` stops the execution if it detects unknown options. You
-can provide the options your spell requires by adding a space and
-quotes `' --option'`.
+Argument are handled as an ordered array. To skip an argument, it can be substituted with an empty string: `''`.
 
 ## Development
 
@@ -154,6 +142,4 @@ python -m lint
 
 #### For 3.X.X releases
 
-* Add `pytest`, `coverage.py`
-* Replace `docopt` with `click`
-  * https://click.palletsprojects.com/en/7.x/
+* Add `pytest`, `snapshottest`, `coverage.py`

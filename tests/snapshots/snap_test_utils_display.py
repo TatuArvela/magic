@@ -19,4 +19,4 @@ snapshots["test_in_color 1"] = [
     "\x1b[37mtest\x1b[0m",
 ]
 
-snapshots["test_print_error 1"] = "\x1b[31m🔥 test\x1b[0m"
+snapshots["test_print_error 1"] = "\x1b[31m🔥 Error: test\x1b[0m"

@@ -1,7 +1,7 @@
 import contextlib
 from io import StringIO
 
-from magic.utils.display import Color, clear_last_line, in_color, print_error
+from magic.shared.display import Color, clear_last_line, in_color, print_error
 
 
 def test_in_color(snapshot):
