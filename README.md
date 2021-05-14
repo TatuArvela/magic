@@ -7,23 +7,24 @@
 [![License](https://img.shields.io/github/license/TatuArvela/Magic)](https://github.com/TatuArvela/Magic/blob/master/LICENSE)
 [![Created at Nitor](https://img.shields.io/badge/created%20at-Nitor-informational.svg)](https://nitor.com/)
 
-Magic is a tool for wrapping repeated command line tasks into simple
-scripts.
+Magic is a tool for wrapping repeated command line tasks into simple scripts.
 
-* A set of commands is saved as a **spell**
+* A sequence of console commands is saved as a **spell**
 * Spells are written into the **spellbook** file (`~/.spellbook.json`)
 * Each spell can be called with one or several **magic words**  
   e.g. `magic build-app` and `magic ba`
 * Spells can have **arguments** passed to them  
   e.g. `magic say abra kadabra`
-* The execution time of spells is reported by default
+* Magic can report the execution time of spells, which may be useful for longer
+  operations
 
 ## Installation
 
-Magic is designed for macOS and common Linux
-distributions using Bash or Zsh. Windows is not supported.
+Magic is designed for macOS and common Linux distributions using Bash or Zsh.
+Windows is not supported.
 
-Magic requires Python 3.9, and can be installed using pip:  
+Magic requires Python 3.9, and can be installed using pip:
+
 ```console
 python3 -m pip install tatuarvela-magic
 ```
@@ -37,29 +38,42 @@ $ magic
 ✨ Magic v3.1.0 (c) 2021 Tatu Arvela
 A tool for simplifying repeated command line tasks
 
-Usage:
-  magic <OPTIONS> COMMAND [ARGS]...
-  magic MAGIC_WORD [ARGS]...
+Usage: magic [OPTIONS] COMMAND [ARGS]...
 
 Options:
-  --help  Show this message and exit.
+  -h, --help  Show this message and exit.
 
 Commands:
   add      Add spell to spellbook
-  delete   Delete spell MAGIC_WORD from spellbook
-  edit     Edit spellbook
-  lint     Run linters
-  show     Show details for spell MAGIC_WORD
-  version  Show version
+  e        Example echo spell with arguments '$a0' and '$a1'
+  edit     Open spellbook in editor
+  example  Example echo spell with arguments '$a0' and '$a1'
 ```
 
-Editing a spell is currently done with an external editor (**Visual Studio
+Editing the spellbook is currently done with an external editor (**Visual Studio
 Code** by default).
+
+### Spell options
+
+```console
+$ magic example --help
+Usage: magic example [OPTIONS]
+
+  Example echo spell with arguments '$a0' and '$a1'
+
+Options:
+  -d, --delete  Delete this spell.
+  -s, --show    Show details of this spell.
+  -h, --help    Show this message and exit.
+```
+
+Other options are interpreted as arguments for spells.
 
 ### Spell arguments
 
 Spells can have an array of arguments, which are populated according to their
-index. Excessive usage is considered an anti-pattern.
+index. Excessive usage is considered to be an anti-pattern, it is recommended to
+create separate spells instead.
 
 Example:
 
@@ -88,7 +102,7 @@ dog
 
 #### Advanced usage: Empty arguments
 
-Argument are handled as an ordered array. To skip an argument, it can be substituted with an empty string: `''`.
+Argument are handled as an ordered array. If necessary, it is possible to make an argument an empty string: `''`.
 
 ## Development
 

@@ -22,7 +22,7 @@ def list_has_no_duplicates(_list):
     return len(_list) == len(set(_list))
 
 
-reserved_words = ["add", "delete", "edit", "show", "version"]
+reserved_words = ["add", "edit"]
 
 
 def magic_word_validator():

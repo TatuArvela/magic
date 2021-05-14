@@ -1,4 +1,4 @@
-from magic.shared.display import Color, in_color, print_error
+from magic.shared.display import Color, in_color
 from magic.shared.spellbook import get
 
 
@@ -7,7 +7,7 @@ def show_spell(magic_word, spell_args, skip_arguments_provided=False):
     color = Color.CYAN
 
     if not spell:
-        return print_error(f"Spell not found for magic word '{magic_word}'")
+        raise Exception(f"Spell not found for magic word '{magic_word}'")
 
     print(f'{in_color("Description:", color)} {spell["description"]}')
     print(f'{in_color("Magic words:", color)} {", ".join(spell["magicWords"])}')
