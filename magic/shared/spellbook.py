@@ -9,7 +9,7 @@ from magic.shared.config import (
     SPELLBOOK_SCHEMA_PATH,
 )
 
-default_spell = {
+DEFAULT_SPELL = {
     "description": "Example echo spell with arguments '$a0' and '$a1'",
     "magicWords": ["e", "example"],
     "commands": ["echo $a0", "echo $a1"],
@@ -19,7 +19,7 @@ default_spell = {
 
 def __create_spellbook():
     with open(SPELLBOOK_PATH, "x") as file:
-        json.dump([default_spell], file, indent=SPELLBOOK_INDENTATION)
+        json.dump([DEFAULT_SPELL], file, indent=SPELLBOOK_INDENTATION)
 
 
 def __validate_spellbook(spellbook_contents):
@@ -34,13 +34,23 @@ def __validate_spellbook(spellbook_contents):
 def __open_spellbook():
     if not os.path.exists(SPELLBOOK_PATH):
         __create_spellbook()
+
     with open(SPELLBOOK_PATH, "r") as file:
         spellbook = json.load(file)
         __validate_spellbook(spellbook)
         return spellbook
 
 
-def get_spells():
+def create_spell(spell):
+    with open(SPELLBOOK_PATH, "r+") as file:
+        spellbook = json.load(file)  # spells are already validated in add_spell()
+        spellbook.append(spell)
+        file.seek(0)
+        json.dump(spellbook, file, indent=SPELLBOOK_INDENTATION)
+        file.truncate()
+
+
+def read_spells():
     spellbook = __open_spellbook()
     spells = dict()
     for entry in spellbook:
@@ -51,21 +61,12 @@ def get_spells():
     return spells
 
 
-def get(magic_word):
-    spells = get_spells()
+def read_spell(magic_word):
+    spells = read_spells()
     return spells.get(magic_word)
 
 
-def write(spell):
-    with open(SPELLBOOK_PATH, "r+") as file:
-        spellbook = json.load(file)  # spells are already validated in add_spell()
-        spellbook.append(spell)
-        file.seek(0)
-        json.dump(spellbook, file, indent=SPELLBOOK_INDENTATION)
-        file.truncate()
-
-
-def delete(magic_word):
+def delete_spell(magic_word):
     with open(SPELLBOOK_PATH, "r+") as file:
 
         def magic_word_filter(spell):

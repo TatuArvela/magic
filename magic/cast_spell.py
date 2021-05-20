@@ -11,7 +11,20 @@ from magic.shared.display import (
     in_color,
     print_error,
 )
-from magic.shared.spellbook import get
+from magic.shared.spellbook import read_spell
+
+
+def cast_spell(magic_word, arguments):
+    start_time = datetime.now()
+
+    try:
+        # __attempt_spell returns true if showSuccessMessage is true
+        show_success_message = __attempt_spell(magic_word, arguments)
+        if show_success_message:
+            __print_result(start_time, success=True)
+
+    except RuntimeError:
+        __print_result(start_time, success=False)
 
 
 def __check_args(argument_count, spell_args):
@@ -43,7 +56,7 @@ def __parse_command(command, spell_args):
 
 def __attempt_spell(magic_word, arguments):
     try:
-        spell = get(magic_word)
+        spell = read_spell(magic_word)
 
         if spell:
             spell_args = __check_args(spell.get("argumentCount"), arguments)
@@ -82,16 +95,3 @@ def __print_result(start_time, success):
     )
 
     print(f"{result_emoji} {time_message} | {EMOJI_TIMER} {elapsed_time}")
-
-
-def cast_spell(magic_word, arguments):
-    start_time = datetime.now()
-
-    try:
-        # __attempt_spell returns true if showSuccessMessage is true
-        show_success_message = __attempt_spell(magic_word, arguments)
-        if show_success_message:
-            __print_result(start_time, success=True)
-
-    except RuntimeError:
-        __print_result(start_time, success=False)

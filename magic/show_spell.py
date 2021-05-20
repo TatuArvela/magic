@@ -1,9 +1,9 @@
 from magic.shared.display import Color, in_color
-from magic.shared.spellbook import get
+from magic.shared.spellbook import read_spell
 
 
 def show_spell(magic_word, spell_args, skip_arguments_provided=False):
-    spell = get(magic_word)
+    spell = read_spell(magic_word)
     color = Color.CYAN
 
     if not spell:
