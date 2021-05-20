@@ -154,6 +154,7 @@ python -m lint
 
 ### TODO
 
-#### For 3.X.X releases
-
+* Add `update(spell)`
 * Add `pytest`, `snapshottest`, `coverage.py`
+* Write internal documentation
+* Improve `add` usage
