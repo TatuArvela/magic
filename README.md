@@ -7,21 +7,28 @@
 [![License](https://img.shields.io/github/license/TatuArvela/Magic)](https://github.com/TatuArvela/Magic/blob/master/LICENSE)
 [![Created at Nitor](https://img.shields.io/badge/created%20at-Nitor-informational.svg)](https://nitor.com/)
 
-Magic is a tool for wrapping repeated command line tasks into simple scripts.
+Magic is a tool for turning repeated command line tasks and long, hard to
+remember commands into quickly callable simple commands, **spells**.
 
-* A sequence of console commands is saved as a **spell**
-* Spells are written into the **spellbook** file (`~/.spellbook.json`)
-* Each spell can be called with one or several **magic words**  
-  e.g. `magic build-app` and `magic ba`
-* Spells can have **arguments** passed to them  
-  e.g. `magic say abra kadabra`
-* Magic can report the execution time of spells, which may be useful for longer
-  operations
+Spells provide a simple and managed alternative to manually created aliases or
+scripts.
 
-## Installation
+## 🏃 Quick tour
+
+1. To add spells, run the built-in **wizard** `magic add`
+2. Spells are written into the **spellbook** file (`~/.spellbook.json`)
+3. Each spell is available as a command under `magic`, which can be listed
+   with `magic --help`
+4. A spell can have one or several command names, which are called **magic
+   words**  
+   e.g. `magic build-app` and `magic ba`
+5. Spells can have **arguments** passed to them  
+   e.g. `magic say abra kadabra`
+
+## 💻 Installation
 
 Magic is designed for macOS and common Linux distributions using Bash or Zsh.
-Windows is not supported.
+Magic also works on Windows Subsystem for Linux.
 
 Magic requires Python 3.9, and can be installed using pip:
 
@@ -29,9 +36,7 @@ Magic requires Python 3.9, and can be installed using pip:
 python3 -m pip install tatuarvela-magic
 ```
 
-See also: [Development installation](#development-installation)
-
-## Usage
+## 🪄 Usage
 
 ```console
 $ magic
@@ -53,7 +58,11 @@ Commands:
 Editing the spellbook is currently done with an external editor (**Visual Studio
 Code** by default).
 
+## 📚 Documentation
+
 ### Spell options
+
+Spell options can be listed with the `-h` or `--help` option.
 
 ```console
 $ magic example --help
@@ -67,13 +76,16 @@ Options:
   -h, --help    Show this message and exit.
 ```
 
+`-d` or `--delete` option can be used to delete a spell.
+
+`-s` or `--show` option can be used to show the details of a spell.
+
 Other options are interpreted as arguments for spells.
 
 ### Spell arguments
 
 Spells can have an array of arguments, which are populated according to their
-index. Excessive usage is considered to be an anti-pattern, it is recommended to
-create separate spells instead.
+index, starting from 0.
 
 Example:
 
@@ -97,64 +109,48 @@ $ magic example cat dog
 ✨ Example echo spell with arguments 'cat' and 'dog'
 cat
 dog
-✅ 23:46:43 | ⏱ 0:00:00
+✅ 12:30:43 | ⏱ 0:00:00
 ```
+
+The arguments can be used in the spell description and commands.
+
+The description arguments are replaced when displaying the spell message.
+
+`argumentCount` property is automatically inferred from the description and
+commands.
+
+Excessive usage of arguments is considered to be an anti-pattern, it is
+recommended to create separate spells instead.
 
 #### Advanced usage: Empty arguments
 
-Argument are handled as an ordered array. If necessary, it is possible to make an argument an empty string: `''`.
+Argument are handled as an ordered array. If necessary, it is possible to make
+an argument an empty string: `''`.
 
-## Development
+### Messages
 
-### Development installation
+#### Message
 
-* Supported operating systems: macOS (untested on Linux)
-* Requirements: Python 3, Poetry
+Magic can print the description of a spell, filled with the provided arguments
 
-1. Clone the Git repository somewhere and navigate to it on the command line
-
-   ```bash
-   git clone https://github.com/TatuArvela/Magic.git
-   cd Magic
-   ```
-
-2. Install `magic` and its dependencies to a virtual env
-
-   ```bash
-   poetry install
-   ```
-
-3. Verify that `magic` works
-
-   ```bash
-   poetry run magic
-   ```
-
-4. Register `magic` to your `PATH`
-
-    ```bash
-    python -m write_path
-    ```
-
-When developing the tool, you should use the `magic` module directly
-with `python -m magic`.
-
-After successful changes, you need to run `poetry install` again to update the
-version in your `PATH`.
-
-### Code quality tools
-
-Magic uses `isort`, `black` and `flake8` as its code quality tools. They are
-executed automatically with `pre-commit` and can also be executed with the
-included lint script:
-
-```bash
-python -m lint
+```console
+✨ Example echo spell with arguments 'cat' and 'dog'
 ```
 
-### TODO
+`showMessage` property defaults to `true`.
 
-* Add `update(spell)`
-* Add `pytest`, `snapshottest`, `coverage.py`
-* Write internal documentation
-* Improve `add` usage
+#### Success message
+
+Magic can show a success message which reports the starting time and duration of
+a spell. This may be useful for longer operations.
+
+```console
+✅ 23:46:43 | ⏱ 0:00:00
+```
+
+`showSuccessMessage` property defaults to `true`.
+
+## ⚙️ Development
+
+Development instructions and notes can be found
+in [DEVELOPMENT.md](./DEVELOPMENT.md)
