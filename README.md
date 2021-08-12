@@ -30,7 +30,7 @@ scripts.
 Magic is designed for macOS and common Linux distributions using Bash or Zsh.
 Magic also works on Windows Subsystem for Linux.
 
-Magic requires Python 3.9, and can be installed using pip:
+Magic requires Python 3.7 or above, and can be installed using pip:
 
 ```console
 python3 -m pip install tatuarvela-magic

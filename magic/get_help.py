@@ -1,11 +1,10 @@
-from importlib import metadata
-
 from click import Context, Group
+from importlib_metadata import version
 
 from magic.shared.display import EMOJI_SPARKLE, Color, in_color
 
 NAME = "Magic"
-VERSION = metadata.version("tatuarvela-magic")
+VERSION = version("tatuarvela-magic")
 YEAR = 2021
 AUTHOR = "Tatu Arvela"
 VERSION_TEXT = (

@@ -3,7 +3,10 @@
 ## 🐍 Installation
 
 * Supported operating systems: macOS (untested on Linux)
-* Requirements: Python 3, Poetry
+* Requirements: Python ^3.7, Poetry
+
+Magic uses [Poetry](https://python-poetry.org/) as a packaging and dependency management tool. It uses the rather
+new `pyproject.toml` format, proposed in [PEP-517](https://www.python.org/dev/peps/pep-0517/).
 
 1. Clone the Git repository somewhere and navigate to it on the command line
 
