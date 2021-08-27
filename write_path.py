@@ -39,12 +39,12 @@ def write_path():
         print(f"Config file ({config_file}) does not exist")
         sys.exit(1)
 
-    with open(config_file, "r") as f:
-        content = f.read()
+    with open(config_file, "r+", encoding="utf-8") as file:
+        # Important for .write(), as this moves the position to the end
+        content = file.read()
 
         if magic_section not in content:
-            with open(config_file, "a") as f:
-                f.write(str(magic_section))
+            file.write(str(magic_section))
             print(f"Added Magic to config file ({config_file})")
         else:
             print(f"Magic is already included in config file ({config_file})")

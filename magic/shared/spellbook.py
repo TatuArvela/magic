@@ -18,31 +18,31 @@ DEFAULT_SPELL = {
 
 
 def __create_spellbook():
-    with open(SPELLBOOK_PATH, "x") as file:
+    with open(SPELLBOOK_PATH, "x", encoding="utf-8") as file:
         json.dump([DEFAULT_SPELL], file, indent=SPELLBOOK_INDENTATION)
 
 
 def __validate_spellbook(spellbook_contents):
     try:
-        with open(SPELLBOOK_SCHEMA_PATH, "r") as file:
+        with open(SPELLBOOK_SCHEMA_PATH, "r", encoding="utf-8") as file:
             schema = json.load(file)
             validate(schema, spellbook_contents)
     except Exception as error:
-        raise Exception(f"Spellbook is invalid: {error}")
+        raise Exception(f"Spellbook is invalid: {error}") from error
 
 
 def __open_spellbook():
     if not os.path.exists(SPELLBOOK_PATH):
         __create_spellbook()
 
-    with open(SPELLBOOK_PATH, "r") as file:
+    with open(SPELLBOOK_PATH, "r", encoding="utf-8") as file:
         spellbook = json.load(file)
         __validate_spellbook(spellbook)
         return spellbook
 
 
 def create_spell(spell):
-    with open(SPELLBOOK_PATH, "r+") as file:
+    with open(SPELLBOOK_PATH, "r+", encoding="utf-8") as file:
         spellbook = json.load(file)  # spells are already validated in add_spell()
         spellbook.append(spell)
         file.seek(0)
@@ -52,7 +52,7 @@ def create_spell(spell):
 
 def read_spells():
     spellbook = __open_spellbook()
-    spells = dict()
+    spells = {}
     for entry in spellbook:
         for magic_word in entry["magicWords"]:
             if spells.get(magic_word):
@@ -67,13 +67,13 @@ def read_spell(magic_word):
 
 
 def delete_spell(magic_word):
-    with open(SPELLBOOK_PATH, "r+") as file:
+    with open(SPELLBOOK_PATH, "r+", encoding="utf-8") as file:
 
         def magic_word_filter(spell):
             if magic_word in spell["magicWords"]:
                 return False
-            else:
-                return True
+
+            return True
 
         spellbook = json.load(file)  # spell validity does not matter here
         spellbook = list(filter(magic_word_filter, spellbook))

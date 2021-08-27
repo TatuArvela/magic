@@ -67,19 +67,18 @@ def __attempt_spell(magic_word, arguments):
                 parsed_command = __parse_command(command, spell_args)
                 executable_commands = f"{executable_commands}\n{parsed_command}"
 
-            process = subprocess.Popen(executable_commands, shell=True)  # nosec
-            exit_code = process.wait()
+            with subprocess.Popen(executable_commands, shell=True) as process:  # nosec
+                exit_code = process.wait()
 
-            if exit_code != 0:
-                raise Exception(f"Command returned exit code {exit_code}")
-            return spell.get("showSuccessMessage") is not False
+                if exit_code != 0:
+                    raise Exception(f"Command returned exit code {exit_code}")
+                return spell.get("showSuccessMessage") is not False
 
-        else:
-            raise Exception(f"Spell not found for magic word: {magic_word}")
+        raise Exception(f"Spell not found for magic word: {magic_word}")
 
     except Exception as error:
         print_error(error)
-        raise RuntimeError
+        raise RuntimeError from error
 
 
 def __print_result(start_time, success):

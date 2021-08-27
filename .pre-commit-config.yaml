@@ -11,12 +11,12 @@ repos:
     hooks:
       - id: black
         language_version: python3
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.8.4
+  - repo: https://github.com/pycqa/pylint
+    rev: pylint-2.10.2
     hooks:
-      - id: flake8
+      - id: pylint
   - repo: https://github.com/pycqa/bandit
     rev: 1.7.0
     hooks:
       - id: bandit
-        exclude: lint.py
+        exclude: (lint.py|test.py|write_path.py)

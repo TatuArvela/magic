@@ -4,6 +4,7 @@ from magic.shared.display import Color, clear_last_line, in_color
 from magic.shared.validation import is_yes_or_no
 
 
+# pylint: disable=R0913
 def prompt(
     message,
     color=Color.WHITE,
@@ -61,6 +62,6 @@ def __prompt_input(validate=None, default=None, required=False):
 
 
 def __yes_or_no(value):
-    if value == "y" or value == "yes":
+    if value in ("y", "yes"):
         return True
     return False
