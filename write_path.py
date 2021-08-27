@@ -1,24 +1,25 @@
 # Adds the development version of Magic to your PATH
 
 import os
+import sys
 
 SHELL = os.getenv("SHELL", "")
 BIN_DIR = os.path.join(os.path.dirname(__file__), "bin")
 HOME = os.path.expanduser("~")
 
 
-def __get_unix_profiles():
-    profiles = [os.path.join(HOME, ".profile")]
+def __get_config_file():
+    if "bash" in SHELL:
+        bash_config = os.path.join(HOME, ".bashrc")
+        return bash_config
 
     if "zsh" in SHELL:
         zdotdir = os.getenv("ZDOTDIR", HOME)
-        profiles.append(os.path.join(zdotdir, ".zshrc"))
+        zsh_config = os.path.join(zdotdir, ".zshrc")
+        return zsh_config
 
-    bash_profile = os.path.join(HOME, ".bash_profile")
-    if os.path.exists(bash_profile):
-        profiles.append(bash_profile)
-
-    return profiles
+    print(f"Your shell ({SHELL}) is not yet supported by this tool.")
+    sys.exit(1)
 
 
 def __get_export_string():
@@ -28,25 +29,25 @@ def __get_export_string():
 
 
 def write_path():
-    print("Adding magic to your PATH...")
+    print("Adding Magic to your PATH...")
     export_string = __get_export_string()
     magic_section = f"\n{export_string}\n"
 
-    profiles = __get_unix_profiles()
-    for profile in profiles:
-        if not os.path.exists(profile):
-            print(f"Skipped profile: {profile}")
-            continue
+    config_file = __get_config_file()
 
-        with open(profile, "r") as f:
-            content = f.read()
+    if not os.path.exists(config_file):
+        print(f"Config file ({config_file}) does not exist")
+        sys.exit(1)
+
+    with open(config_file, "r") as f:
+        content = f.read()
 
         if magic_section not in content:
-            with open(profile, "a") as f:
+            with open(config_file, "a") as f:
                 f.write(str(magic_section))
-            print(f"Added to profile: {profile}")
+            print(f"Added Magic to config file ({config_file})")
         else:
-            print(f"Already included in: {profile}")
+            print(f"Magic is already included in config file ({config_file})")
 
 
 if __name__ == "__main__":
