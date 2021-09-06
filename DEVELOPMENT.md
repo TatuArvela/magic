@@ -94,3 +94,5 @@ python -m lint
     * Create prompt with user-editable prefilled data
 * Improve `add_spell` wizard
     * Enable context awareness and/or browsing command line history in order to create useful spells faster
+* Increase the test coverage
+    * Find an approach for automatic integration and E2E testing
