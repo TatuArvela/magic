@@ -56,4 +56,9 @@ disable = [
 max-line-length = "88"
 
 [tool.pytest]
-# Put something here
+testpaths = [
+    "tests",
+]
+
+[tool.coverage.run]
+source = ['magic']
