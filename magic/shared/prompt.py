@@ -4,33 +4,44 @@ from magic.shared.display import Color, clear_last_line, in_color
 from magic.shared.validation import is_yes_or_no
 
 
-# pylint: disable=R0913
 def prompt(
     message,
     color=Color.WHITE,
-    multiline=False,
     validate=None,
     default=None,
     required=False,
-    yes_or_no=False,
 ):
     print(in_color(message, color))
 
-    if multiline:
-        lines = []
-        while True:
-            line = __prompt_input(validate, default)
-            if line:
-                lines.append(line)
-            elif not required or len(lines) > 0:
-                clear_last_line()
-                break
-        return lines
-
-    if yes_or_no:
-        return __yes_or_no(__prompt_input(is_yes_or_no, default, required))
-
     return __prompt_input(validate, default, required)
+
+
+def multiline_prompt(
+    message, color=Color.WHITE, validate=None, default=None, required=False
+):
+    print(in_color(message, color))
+
+    lines = []
+    while True:
+        line = __prompt_input(validate, default)
+        if line:
+            lines.append(line)
+        elif not required or len(lines) > 0:
+            clear_last_line()
+            break
+    return lines
+
+
+def yes_or_no_prompt(message, color=Color.WHITE, default=None, required=False):
+    print(in_color(message, color))
+
+    return __yes_or_no(__prompt_input(is_yes_or_no, default, required))
+
+
+def __yes_or_no(value):
+    if value in ("y", "yes"):
+        return True
+    return False
 
 
 def __prompt_input(validate=None, default=None, required=False):
@@ -60,8 +71,3 @@ def __prompt_input(validate=None, default=None, required=False):
 
     return response
 
-
-def __yes_or_no(value):
-    if value in ("y", "yes"):
-        return True
-    return False

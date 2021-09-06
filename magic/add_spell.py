@@ -1,7 +1,7 @@
 import re
 
 from magic.shared.display import EMOJI_WIZARD, Color
-from magic.shared.prompt import prompt
+from magic.shared.prompt import multiline_prompt, prompt, yes_or_no_prompt
 from magic.shared.spellbook import create_spell
 from magic.shared.validation import magic_word_validator
 
@@ -14,12 +14,11 @@ def add_spell():
         f"Press ^C at any time to quit.\n"
     )
 
-    commands = prompt(
+    commands = multiline_prompt(
         "Enter commands to be run in the spell, separated by line breaks.\n"
         "You may use $a0, $a1, etc. to provide arguments.\n"
         "Leave the line empty to continue.",
         required=True,
-        multiline=True,
         color=PROMPT_COLOR,
     )
     print("")
@@ -43,19 +42,17 @@ def add_spell():
     ]
     print("")
 
-    show_message = prompt(
+    show_message = yes_or_no_prompt(
         "Do you want to show a message when casting the spell, YES or no?",
         default="yes",
-        yes_or_no=True,
         color=PROMPT_COLOR,
     )
     print("")
 
-    show_success_message = prompt(
+    show_success_message = yes_or_no_prompt(
         "Do you want to show a message on completion "
         "(containing the starting time and duration of the spell), YES or no?",
         default="yes",
-        yes_or_no=True,
         color=PROMPT_COLOR,
     )
 
