@@ -19,12 +19,14 @@ def is_yes_or_no(_line):
 # List validation
 
 
-def is_not_empty(_list):
-    return "" not in _list
+def is_empty(_list):
+    if len(_list):
+        return "" in _list
+    return True
 
 
-def has_no_duplicates(_list):
-    return len(_list) == len(set(_list))
+def has_duplicates(_list):
+    return len(_list) != len(set(_list))
 
 
 def __is_each_word_available(words, spells):
@@ -37,7 +39,7 @@ def __is_each_word_available(words, spells):
     return errors
 
 
-def __print_errors(errors):
+def __print_validation_errors(errors):
     error_string = "\n".join(errors) + "\n"
     print(in_color(error_string, Color.YELLOW))
 
@@ -48,14 +50,14 @@ def magic_word_validator():
     def validate(line):
         words = [word.strip(" ") for word in line.split(",")]
 
-        if not is_not_empty(words):
+        if is_empty(words):
             return False
-        if not has_no_duplicates(words):
+        if has_duplicates(words):
             return False
 
         errors = __is_each_word_available(words, spells)
         if len(errors) > 0:
-            __print_errors(errors)
+            __print_validation_errors(errors)
             return False
 
         return True
