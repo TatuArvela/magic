@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tatuarvela-magic"
-version = "3.1.0"
+version = "3.1.1"
 description = "A tool for simplifying repeated command line tasks"
 authors = ["Tatu Arvela <tatu.arvela@nitor.com>"]
 license = "MIT"
