@@ -32,5 +32,7 @@ jobs:
       - name: Run linters
         if: ${{ startsWith(matrix.os, 'ubuntu') && matrix.python-version == '3.9' }} # Only needs to run once
         run: |
-          source .venv/bin/activate
-          python3 -m lint
+          poetry run python -m lint
+      - name: Run tests
+        run: |
+          poetry run python -m test
