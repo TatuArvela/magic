@@ -70,4 +70,3 @@ def __prompt_input(validate=None, default=None, required=False):
                 clear_last_line()
 
     return response
-
