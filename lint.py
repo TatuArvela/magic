@@ -1,21 +1,26 @@
 import subprocess
 
 
-def colorize(text):
-    return f"\u001b[34m{text}\u001b[0m"
+def header(text):
+    print(f"# \u001b[34m{text}\u001b[0m")
+
+
+def run(command, check=False):
+    subprocess.run(command.split(" "), check=check)
 
 
 def lint():
-    print(colorize("# Running isort"))
-    subprocess.run(["isort", "."], check=False)
-    print(colorize("# Running black"))
-    subprocess.run(["black", "."], check=False)
-    print(colorize("# Running pylint"))
-    subprocess.run(
-        ["pylint", "magic", "tests", "lint.py", "test.py", "write_path.py"], check=False
-    )
-    print(colorize("# Running bandit"))
-    subprocess.run(["bandit", "-r", "--ini", ".bandit"], check=False)
+    header("Running isort")
+    run("isort .")
+
+    header("Running black")
+    run("black .")
+
+    header("Running pylint")
+    run("pylint magic write_path.py")
+
+    header("Running bandit")
+    run("bandit -r --ini .bandit")
 
 
 if __name__ == "__main__":
