@@ -1,10 +1,12 @@
 # Python
-__pycache__/
-*.py[cod]
 *$py.class
-.venv/
-dist/
+*.py[cod]
+.coverage
+.pytest_cache/
 .python-version
+.venv/
+__pycache__/
+dist/
 
 # Development tools
 .vscode
