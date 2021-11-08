@@ -1,10 +1,10 @@
 # ![Magic icon](./icon.png?raw=true "Magic icon") Magic
 
-[![Repository](https://img.shields.io/badge/repository-gray.svg?logo=github)](https://github.com/TatuArvela/Magic)
-[![GitHub issues](https://img.shields.io/github/issues/TatuArvela/Magic)](https://github.com/TatuArvela/Magic/issues)
-[![Pipeline status](https://github.com/TatuArvela/Magic/actions/workflows/verify.yml/badge.svg?event=push)](https://github.com/TatuArvela/Magic/actions/workflows/verify.yml)
+[![Repository](https://img.shields.io/badge/repository-gray.svg?logo=github)](https://github.com/TatuArvela/magic)
+[![GitHub issues](https://img.shields.io/github/issues/TatuArvela/magic)](https://github.com/TatuArvela/magic/issues)
+[![Pipeline status](https://github.com/TatuArvela/magic/actions/workflows/verify.yml/badge.svg?event=push)](https://github.com/TatuArvela/magic/actions/workflows/verify.yml)
 [![PyPI](https://img.shields.io/pypi/v/tatuarvela-magic)](https://pypi.org/project/tatuarvela-magic/)
-[![License](https://img.shields.io/github/license/TatuArvela/Magic)](https://github.com/TatuArvela/Magic/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/TatuArvela/magic)](https://github.com/TatuArvela/magic/blob/master/LICENSE)
 [![Created at Nitor](https://img.shields.io/badge/created%20at-Nitor-informational.svg)](https://nitor.com/)
 
 Magic is a tool for turning repeated command line tasks and long, hard to

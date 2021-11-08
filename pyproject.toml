@@ -5,7 +5,7 @@ description = "A tool for simplifying repeated command line tasks"
 authors = ["Tatu Arvela <tatu.arvela@nitor.com>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/TatuArvela/Magic"
+homepage = "https://github.com/TatuArvela/magic"
 packages = [
     {include = "magic"}
 ]

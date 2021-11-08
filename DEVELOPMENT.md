@@ -11,7 +11,7 @@ new `pyproject.toml` format, proposed in [PEP-517](https://www.python.org/dev/pe
 1. Clone the Git repository somewhere and navigate to it on the command line
 
     ```bash
-    git clone https://github.com/TatuArvela/Magic.git
+    git clone https://github.com/TatuArvela/magic.git
     cd Magic
     ```
 
