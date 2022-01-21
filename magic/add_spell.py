@@ -1,11 +1,11 @@
 import re
 
-from magic.shared.display import EMOJI_WIZARD, Color
+from magic.shared.display import EMOJI_WIZARD
 from magic.shared.prompt import multiline_prompt, prompt, yes_or_no_prompt
 from magic.shared.spellbook import create_spell
 from magic.shared.validation import magic_word_validator
 
-PROMPT_COLOR = Color.CYAN
+PROMPT_COLOR = "cyan"
 
 
 def add_spell():

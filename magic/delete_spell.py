@@ -1,4 +1,4 @@
-from magic.shared.display import EMOJI_TRASH, Color
+from magic.shared.display import EMOJI_TRASH
 from magic.shared.prompt import yes_or_no_prompt
 from magic.shared.spellbook import delete_spell as _delete_spell
 from magic.show_spell import show_spell
@@ -13,7 +13,7 @@ def delete_spell(magic_word):
     confirm = yes_or_no_prompt(
         "This action cannot be undone. Are you sure you want to delete this spell, yes or NO?",
         default="no",
-        color=Color.RED,
+        color="red",
     )
 
     if confirm:

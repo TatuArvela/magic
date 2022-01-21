@@ -2,13 +2,13 @@ import subprocess  # nosec
 from datetime import datetime, timedelta
 from string import Template
 
+import click
+
 from magic.shared.display import (
     EMOJI_FAILURE,
     EMOJI_SPARKLE,
     EMOJI_SUCCESS,
     EMOJI_TIMER,
-    Color,
-    in_color,
     print_error,
 )
 from magic.shared.spellbook import read_spell
@@ -45,7 +45,7 @@ def __handle_message(spell, spell_args):
     if show_message is not False:
         if spell_args is not None:
             description = __substitute_args(description, spell_args)
-        print(f"{EMOJI_SPARKLE} {in_color(description, Color.CYAN)}")
+        print(f"{EMOJI_SPARKLE} {click.style(description, fg='cyan')}")
 
 
 def __parse_command(command, spell_args):
@@ -88,9 +88,9 @@ def __print_result(start_time, success):
 
     result_emoji = EMOJI_SUCCESS if success else EMOJI_FAILURE
     time_message = (
-        in_color(current_time, Color.GREEN)
+        click.style(current_time, fg="green")
         if success
-        else in_color(current_time, Color.RED)
+        else click.style(current_time, fg="red")
     )
 
     print(f"{result_emoji} {time_message} | {EMOJI_TIMER} {elapsed_time}")

@@ -2,16 +2,17 @@ import click
 
 from magic.cast_spell import cast_spell
 from magic.delete_spell import delete_spell
-from magic.shared.display import Color, in_color
 from magic.shared.spellbook import read_spells
 from magic.show_spell import show_spell
 
 
 def generate_commands(group):
     for magic_word, spell in read_spells().items():
+        description = click.style(spell.get("description"), fg='blue')
         group.command(
             name=magic_word,
-            help=in_color(spell.get("description"), Color.BLUE),
+            help=description,
+            short_help=description,
             context_settings=dict(allow_extra_args=True, ignore_unknown_options=True),
         )(__create_command(magic_word))
 

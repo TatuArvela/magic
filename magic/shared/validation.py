@@ -1,4 +1,5 @@
-from magic.shared.display import Color, in_color
+import click
+
 from magic.shared.spellbook import read_spells
 
 RESERVED_WORDS = ["add", "edit"]
@@ -41,7 +42,7 @@ def __is_each_word_available(words, spells):
 
 def __print_validation_errors(errors):
     error_string = "\n".join(errors) + "\n"
-    print(in_color(error_string, Color.YELLOW))
+    print(click.style(error_string, fg="yellow"))
 
 
 def magic_word_validator():

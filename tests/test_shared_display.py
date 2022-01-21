@@ -1,15 +1,8 @@
 import contextlib
 from io import StringIO
 
-from magic.shared.display import Color, clear_last_line, in_color, print_error
+from magic.shared.display import clear_last_line, print_error
 from tests.utils import strip_output
-
-
-def test_in_color(snapshot):
-    color_samples = []
-    for color in Color:
-        color_samples.append(in_color("test", color))
-    snapshot.assert_match(color_samples)
 
 
 def test_print_error(snapshot):
