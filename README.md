@@ -40,7 +40,7 @@ python3 -m pip install tatuarvela-magic
 
 ```console
 $ magic
-✨ Magic v3.1.2 © 2021 Tatu Arvela
+✨ Magic © 2022 Tatu Arvela
 A tool for simplifying repeated command line tasks
 
 Usage: magic [OPTIONS] COMMAND [ARGS]...
