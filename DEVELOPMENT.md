@@ -86,6 +86,25 @@ and can also be executed with the included lint script:
 python -m lint
 ```
 
+## 📦 Preparing a release
+
+Magic comes with an automated script that:
+
+1. Automatically increments either the patch, minor or major value of the project
+2. Creates a commit with a commit message stating the version
+3. Creates a tag for the version
+4. Pushes the commit and the tag to origin
+
+```bash
+# Assuming virtualenv is active
+python -m version patch
+python -m version minor
+python -m version major
+```
+
+Afterwards, this new version only needs to be released using the GitHub Releases feature.
+
+
 ## 📝 TODO
 
 ### 🔮 Future releases
