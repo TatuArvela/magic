@@ -3,27 +3,6 @@ import subprocess
 import sys
 
 
-def increment_str_int(str_int):
-    return str(int(str_int) + 1)
-
-
-# Get a value in a nested dict by a string key
-def get_by_key(dic, key):
-    split_key = key.split('.')
-    return_value = dic
-    for key in split_key:
-        return_value = return_value.get(key, {})
-    return return_value
-
-
-# Set a value in a nested dict by a string key
-def set_by_key(dic, key, value):
-    split_key = key.split('.')
-    for key in split_key[:-1]:
-        dic = dic.setdefault(key, {})
-    dic[split_key[-1]] = value
-
-
 def increment_version(param):
     command = f"poetry version {param}"
     output = subprocess.run(command.split(" "), capture_output=True)
